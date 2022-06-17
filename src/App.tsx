@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import AppRoutes from './components/AppRoutes/AppRoutes';
+import { useAppSelector } from './hooks/useAppSelector';
+import { getAuth } from './redux/thunks/auth.thunks';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch()
+  const { isInitializing } = useAppSelector(state => state.auth)
+
+  useEffect(() => {
+    dispatch(getAuth() as any)
+  }, [dispatch])
+
+  if (isInitializing) return <div className="">loadin</div>
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AppRoutes />
+    </>
   );
-}
+};
 
 export default App;
