@@ -93,6 +93,22 @@ h6 {
 
 @layer components{
     .navItem{
-        @apply p-5 flex flex-col items-center text-[13px] gap-1 hover:bg-gray-100 w-full active:bg-lightGray transition-colors cursor-pointer lg:flex-row lg:gap-3 lg:text-sm lg:py-2
+        @apply text-xs p-2 sm:p-5 flex flex-col items-center gap-1 hover:bg-gray-100 w-full active:bg-lightGray transition-colors cursor-pointer lg:flex-row lg:gap-3  lg:py-2 text-black sm:text-sm
+    }
+
+    .grayInput{
+        @apply border-gray-300 border focus:border-primaryBlue focus:shadow-xs focus:shadow-primaryBlue
+    }
+
+    .subBtn{
+        @apply py-[8px] font-medium uppercase px-4 active:scale-95 transition-all
+    }
+
+    .sectionTitle{
+        @apply font-semibold text-xl mb-2 
+    }
+
+    .actionIcon{
+        @apply w-10 h-10 active:bg-lightGray rounded-[50%] p-2 transition-colors
     }
 }

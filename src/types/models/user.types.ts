@@ -9,4 +9,7 @@ export interface IUser {
     country?: string
     avatar: string
     banner?: string
+    _id: string
+    likes: string[]
+    dislikes: string[]
 }

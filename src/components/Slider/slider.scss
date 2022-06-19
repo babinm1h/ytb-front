@@ -1,0 +1,23 @@
+
+.swiper-button-prev,.swiper-button-next{
+    position: absolute;
+    top: 50%;
+    z-index: 3;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 5px black;
+    background-image: url("../../assets/arrowRight.svg") !important;
+  background-repeat: no-repeat;
+  background-size: 80% auto;
+  background-position: center;
+    &::after{
+        display: none;
+    }
+  }
+
+  .swiper-button-prev{
+    background-image: url("../../assets/arrowLeft.svg") !important;
+  }

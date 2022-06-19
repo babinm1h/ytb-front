@@ -1,7 +1,7 @@
 import axios from "axios"
 import Cookies from "js-cookie"
 
-const SERVER_URL = 'http://localhost:7777';
+export const SERVER_URL = 'http://localhost:7777';
 
 
 export const $instance = axios.create({

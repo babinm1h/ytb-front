@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { login } from '../../../redux/thunks/auth.thunks';
 import { validate } from '../../../utils/validate';
@@ -17,13 +17,13 @@ interface IForm {
 
 const LoginForm = () => {
     const nav = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const { loginError, isProccessing, user } = useAppSelector(state => state.auth)
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm<IForm>()
 
     const onSubmit: SubmitHandler<IForm> = (data) => {
-        dispatch(login(data) as any)
+        dispatch(login(data))
     }
 
     useEffect(() => {

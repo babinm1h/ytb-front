@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import AppRoutes from './components/AppRoutes/AppRoutes';
+import { useAppDispatch } from './hooks/useAppDispatch';
 import { useAppSelector } from './hooks/useAppSelector';
 import { getAuth } from './redux/thunks/auth.thunks';
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
   const { isInitializing } = useAppSelector(state => state.auth)
 
   useEffect(() => {
-    dispatch(getAuth() as any)
+    dispatch(getAuth())
   }, [dispatch])
 
   if (isInitializing) return <div className="">loadin</div>

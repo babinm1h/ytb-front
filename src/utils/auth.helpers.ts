@@ -1,7 +1,7 @@
 import Cookies from "js-cookie"
 
 export const setTokenCookie = (token: string) => {
-    Cookies.set('ytbToken', token)
+    Cookies.set('ytbToken', token, { expires: 20 })
 }
 
 export const removeTokenCookie = () => {

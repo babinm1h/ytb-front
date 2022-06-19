@@ -4,6 +4,7 @@ import Channel from '../../pages/Channel';
 import Home from '../../pages/Home';
 import Login from '../../pages/Login';
 import Register from '../../pages/Register';
+import VideoPage from '../../pages/VideoPage';
 
 export enum AllRoutes {
     home = '/*',
@@ -21,6 +22,7 @@ const AppRoutes = () => {
         { path: AllRoutes.channel + '/:id', elem: <Channel /> },
         { path: AllRoutes.login, elem: <Login /> },
         { path: AllRoutes.register, elem: <Register /> },
+        { path: AllRoutes.video + "/:id", elem: <VideoPage /> },
     ]
 
     return (

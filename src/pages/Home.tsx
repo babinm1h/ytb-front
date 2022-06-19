@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Slider from '../components/Slider';
 import MainLayout from '../components/MainLayout';
-import VideoCard from '../components/VideoCard';
+import VideosList from '../components/VideosList';
+import { fetchAllVideos, fetchPopularVideos } from '../redux/thunks/videos.thunks';
+import { useAppSelector } from '../hooks/useAppSelector';
+import { useAppDispatch } from '../hooks/useAppDispatch';
 
 const Home = () => {
+    const dispatch = useAppDispatch()
+    const { isLoading, videos, popularVideos } = useAppSelector(state => state.videos)
+
+    useEffect(() => {
+        dispatch(fetchAllVideos())
+        dispatch(fetchPopularVideos())
+    }, [])
+
     return (
         <>
             <MainLayout>
-                <div className="grid xl:grid-cols-4 gap-5 px-5 md:grid-cols-3 sm:grid-cols-2 w-full">
+                <section className="hidden sm:block p-5">
+                    <h2 className="sectionTitle">Popular videos</h2>
+                    <Slider videos={popularVideos} />
+                </section>
 
-                    <VideoCard />
-                    <VideoCard />
-                    <VideoCard />
+                {isLoading
+                    ? <div>load</div>
+                    : <section className="">
+                        <h2 className="sectionTitle">Recommended</h2>
+                        <VideosList videos={videos} />
+                    </section>
+                }
 
-                </div>
             </MainLayout>
         </>
     );

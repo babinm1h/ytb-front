@@ -4,9 +4,9 @@ import { AllRoutes } from '../../AppRoutes/AppRoutes';
 import AuthFormControl from '../controls/AuthFormControl';
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { validate } from '../../../utils/validate';
-import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { regisrate } from '../../../redux/thunks/auth.thunks';
+import { useAppDispatch } from '../../../hooks/useAppDispatch';
 
 interface IForm {
     name: string
@@ -16,13 +16,13 @@ interface IForm {
 
 const RegisterForm = () => {
     const nav = useNavigate()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const { registerError, isProccessing, user } = useAppSelector(state => state.auth)
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm<IForm>()
 
     const onSubmit: SubmitHandler<IForm> = (data) => {
-        dispatch(regisrate(data) as any)
+        dispatch(regisrate(data))
     }
 
     useEffect(() => {

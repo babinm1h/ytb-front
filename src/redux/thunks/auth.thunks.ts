@@ -1,7 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AuthService } from "../../API/auth.service";
+import { LikesService } from "../../API/likes.service";
 import { ILoginArgs, IRegisterArgs } from "../../types/args.types";
-import { AuthActionTypes } from "../../types/slices/authSlice.types";
+import { AuthActionTypes } from "../../types/slices/auth.slice.types";
 
 
 
@@ -32,6 +33,28 @@ export const getAuth = createAsyncThunk(AuthActionTypes.getAuth,
     async (_, thunk) => {
         try {
             const data = await AuthService.getAuth()
+            return data
+        } catch (err: any) {
+            return thunk.rejectWithValue(err.response?.data.message)
+        }
+    })
+
+
+export const likeVideo = createAsyncThunk(AuthActionTypes.getAuth,
+    async (videoId: string, thunk) => {
+        try {
+            const data = await LikesService.likeVideo(videoId)
+            return data
+        } catch (err: any) {
+            return thunk.rejectWithValue(err.response?.data.message)
+        }
+    })
+
+
+export const dislikeVideo = createAsyncThunk(AuthActionTypes.getAuth,
+    async (videoId: string, thunk) => {
+        try {
+            const data = await LikesService.dislikeVideo(videoId)
             return data
         } catch (err: any) {
             return thunk.rejectWithValue(err.response?.data.message)

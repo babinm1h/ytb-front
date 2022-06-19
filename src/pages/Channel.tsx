@@ -1,37 +1,38 @@
-import React from 'react';
-import ChannelVideoCard from '../components/Channel/ChannelVideoCard';
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Author from '../components/Channel/Author';
 import MainVideo from '../components/Channel/MainVideo';
 import MainLayout from '../components/MainLayout';
+import Slider from '../components/Slider';
+import { useAppDispatch } from '../hooks/useAppDispatch';
+import { useAppSelector } from '../hooks/useAppSelector';
+import { fetchChannelPopularVideos, fetchProfile } from '../redux/thunks/channelPage.thunks';
 
 const Channel = () => {
+    const dispatch = useAppDispatch()
+    const { id } = useParams() as { id: string }
+    const { popularVideos, isLoading, user } = useAppSelector(state => state.channelPage)
+
+    useEffect(() => {
+        if (id) {
+            dispatch(fetchChannelPopularVideos(id))
+            dispatch(fetchProfile(id))
+        }
+    }, [])
+
+    if (isLoading || !user) return <div>load</div>
+
     return (
         <MainLayout>
-            <div className="px-5">
-                <div className="w-full h-[200px]">
-                    <img src="https://i.ytimg.com/vi/Od5H_CiU2vM/maxresdefault.jpg" alt="wallpaper"
-                        className="object-cover w-full h-full" />
-                </div>
-
-                <div className="flex items-center mt-5 gap-5">
-                    <div className="w-20 h-20 rounded-[50%]">
-                        <img src="https://i.ytimg.com/vi/Od5H_CiU2vM/maxresdefault.jpg" alt="wallpaper"
-                            className="object-cover w-full h-full rounded-[50%]" />
-                    </div>
-                    <div className="">
-                        <h2 className="font-medium text-2xl">Talents CS:GO</h2>
-                        <div className="text-myGray text-[16px]">37k subscribers</div>
-                    </div>
-                </div>
+            <div className="px-10">
+                <Author user={user} />
 
                 <MainVideo />
 
-                <div className="flex items-center gap-5 py-7 border-b border-gray-300">
-                    <ChannelVideoCard />
-                    <ChannelVideoCard />
-                    <ChannelVideoCard />
-                    <ChannelVideoCard />
-                    <ChannelVideoCard />
-                </div>
+                <section className="py-7 border-b border-gray-300">
+                    <h2 className="sectionTitle">Popular videos</h2>
+                    <Slider videos={popularVideos} channelSlider={true} />
+                </section>
             </div>
         </MainLayout>
     );

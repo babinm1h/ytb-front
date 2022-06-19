@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { CircleUser, VideoPlus } from '../../../../assets/icons';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { AllRoutes } from '../../../AppRoutes/AppRoutes';
@@ -20,8 +20,10 @@ const ActionsBlock = () => {
                         <VideoPlus className='w-10 h-10' />
                     </button>
                     <div className="w-10 h-10 flex-shrink-0">
-                        <img src={user.avatar} alt={user.name}
-                            className="rounded-[50%] object-cover w-full h-full" />
+                        <NavLink to={AllRoutes.channel + `/${user._id}`}>
+                            <img src={user.avatar} alt={user.name}
+                                className="rounded-[50%] object-cover w-full h-full" />
+                        </NavLink>
                     </div>
                 </div>
                 : <button className='text-primaryBlue flex items-center gap-2 font-medium uppercase border border-primaryBlue px-4 py-2 transition-colors active:bg-lightGray' onClick={handleNav}>

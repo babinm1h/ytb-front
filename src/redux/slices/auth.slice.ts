@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IAuthResponse } from "../../API/auth.service";
 import { IUser } from "../../types/models/user.types";
-import { IAuthState } from "../../types/slices/authSlice.types";
+import { IAuthState } from "../../types/slices/auth.slice.types";
 import { getAuth, login, regisrate } from "../thunks/auth.thunks";
 
 

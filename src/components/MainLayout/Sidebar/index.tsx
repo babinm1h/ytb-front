@@ -1,26 +1,28 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { HomeIcon, VideosIcon, CollectionVideos } from '../../../assets/icons';
+import { AllRoutes } from '../../AppRoutes/AppRoutes';
 
 const Sidebar = () => {
     return (
         <div className="bg-white fixed top-[56px] left-0 h-full z-[2]">
-            <ul className="flex flex-col items-center md:items-start">
+            <nav className="flex flex-col items-center md:items-start">
 
-                <li className="navItem">
+                <NavLink to={AllRoutes.home} className="navItem">
                     <HomeIcon className='w-7 h-7' />
                     Home
-                </li>
+                </NavLink>
 
-                <li className="navItem">
+                <NavLink to={AllRoutes.home} className="navItem">
                     <CollectionVideos className='w-7 h-7' />
                     Subscribes
-                </li>
+                </NavLink>
 
-                <li className="navItem">
+                <NavLink to={AllRoutes.home} className="navItem">
                     <VideosIcon className='w-7 h-7' />
                     Your videos
-                </li>
-            </ul>
+                </NavLink>
+            </nav>
         </div>
     );
 };
