@@ -1,52 +1,18 @@
-import React, { FC, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { FC } from 'react';
 import { LikeIcon, DislikeIcon, FillLikeIcon, FillDislikeIcon } from '../../assets/icons';
-import { IUser } from '../../types/models/user.types';
+import { useAppSelector } from '../../hooks/useAppSelector';
+import { useVideoLikes } from '../../hooks/useVideoLikes'
 import { IVideo } from '../../types/models/video.types';
 import { roundNumber } from '../../utils/roundNumber';
 import { getCreationDate } from '../../utils/time.helpers';
-import { AllRoutes } from '../AppRoutes/AppRoutes';
 
 interface IVideoInfoProps {
-    authUser: IUser | null
     video: IVideo
 }
 
-const VideoInfo: FC<IVideoInfoProps> = ({ video, authUser }) => {
-    const nav = useNavigate()
-    const [isLiked, setIsLiked] = useState(authUser?.likes.includes(video._id) || false)
-    const [isDisliked, setIsDisliked] = useState(authUser?.dislikes.includes(video._id) || false)
-
-    const handleLike = () => {
-        if (!authUser) nav(AllRoutes.login);
-        if (isLiked) {
-            setIsLiked(false)
-        } else if (isDisliked) {
-            setIsDisliked(false)
-            setIsLiked(true)
-        } else {
-            setIsLiked(true)
-        }
-    }
-
-    const handleDislike = () => {
-        if (!authUser) nav(AllRoutes.login);
-        if (isLiked) {
-            setIsLiked(false)
-            setIsDisliked(true)
-        } else if (isDisliked) {
-            setIsDisliked(false)
-        } else {
-            setIsDisliked(true)
-        }
-    }
-
-    useEffect(() => {
-        if (!authUser) {
-            setIsDisliked(false)
-            setIsLiked(false)
-        }
-    }, [authUser])
+const VideoInfo: FC<IVideoInfoProps> = ({ video }) => {
+    const { isProcessing } = useAppSelector(state => state.videoPage)
+    const { handleDislike, handleLike, isDisliked, isLiked } = useVideoLikes(video)
 
     return (
         <>
@@ -58,14 +24,15 @@ const VideoInfo: FC<IVideoInfoProps> = ({ video, authUser }) => {
                         <span>{getCreationDate(video.createdAt || '')}</span>
                     </div>
                     <div className="flex items-center gap-5">
-                        <button className="flex items-center gap-1" onClick={handleLike}>
+                        <button className="flex items-center" onClick={handleLike} disabled={isProcessing}>
                             {isLiked
-                                ? <FillLikeIcon className='actionIcon' /> : <LikeIcon className='actionIcon' />}
+                                ? <FillLikeIcon className='actionIcon' />
+                                : <LikeIcon className='actionIcon' />}
                             <span className="uppercase font-medium mt-1">
                                 {roundNumber(video?.likesCount)}
                             </span>
                         </button>
-                        <button className="flex items-center gap-1" onClick={handleDislike}>
+                        <button className="flex items-center" onClick={handleDislike} disabled={isProcessing}>
                             {isDisliked
                                 ? <FillDislikeIcon className='actionIcon' />
                                 : <DislikeIcon className='actionIcon' />}

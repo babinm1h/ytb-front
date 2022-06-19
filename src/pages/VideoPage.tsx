@@ -5,6 +5,7 @@ import CommentsForm from '../components/UI/forms/CommentsForm';
 import VideoInfo from '../components/VideoPage/VideoInfo';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { useAppSelector } from '../hooks/useAppSelector';
+import { resetVideo } from '../redux/slices/videoPage.slice';
 import { fetchSingleVideo } from '../redux/thunks/videoPage.thunks';
 
 
@@ -17,24 +18,27 @@ const VideoPage = () => {
 
     useEffect(() => {
         dispatch(fetchSingleVideo(id))
-    }, [])
+        return () => {
+            dispatch(resetVideo())
+        }
+    }, [id])
 
-    if (!video && isVideoLoading) {
-        return <div>load</div>
-    }
 
     return (
         <MainLayout>
             <div className="p-5">
-                <div className="w-full h-[500px] border border-gray-400">player</div>
-
-                <VideoInfo authUser={user} video={video!} />
-                <div className="py-5">
-                    <span className="text-[16px]">277 Comments</span>
-                    {user && <CommentsForm user={user} />}
-                </div>
+                {!video || isVideoLoading
+                    ? <div>loader</div>
+                    : <>
+                        <div className="w-full h-[500px] border border-gray-400">player</div>
+                        <VideoInfo video={video} />
+                        <div className="py-5">
+                            <span className="text-[16px]">277 Comments</span>
+                            {user && <CommentsForm user={user} />}
+                        </div>
+                    </>}
             </div>
-        </MainLayout>
+        </MainLayout >
     );
 };
 
