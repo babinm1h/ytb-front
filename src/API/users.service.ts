@@ -1,4 +1,4 @@
-import { $instance } from ".";
+import { $authInstance, $instance } from ".";
 import { IUpdateUserArgs } from "../types/args.types";
 import { IUser } from "../types/models/user.types";
 
@@ -21,4 +21,10 @@ export class UsersService {
         const { data } = await $instance.put(`/users/update`, { args })
         return data
     }
+
+    static async toggleSubscribe(userId: string): Promise<IUser> {
+        const { data } = await $authInstance.put(`/users/subscribe/${userId}`)
+        return data
+    }
+
 }

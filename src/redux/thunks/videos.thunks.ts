@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { VideosService } from "../../API/videos.service";
-import { VideosActionTypes } from "../../types/slices/video.slice.types";
+import { VideosActionTypes } from "../../types/slices/videos.slice.types";
 
 
 export const fetchAllVideos = createAsyncThunk(VideosActionTypes.fetch_all,

@@ -23,13 +23,10 @@ const Home = () => {
                     <Slider videos={popularVideos} />
                 </section>
 
-                {isLoading
-                    ? <div>load</div>
-                    : <section className="">
-                        <h2 className="sectionTitle">Recommended</h2>
-                        <VideosList videos={videos} />
-                    </section>
-                }
+                <section className="">
+                    <h2 className="sectionTitle">Recommended</h2>
+                    <VideosList videos={videos} isLoading={isLoading} />
+                </section>
 
             </MainLayout>
         </>

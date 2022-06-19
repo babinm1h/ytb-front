@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IVideo } from "../../types/models/video.types";
-import { IVideosState } from "../../types/slices/video.slice.types";
+import { IVideosState } from "../../types/slices/videos.slice.types";
 import { fetchAllVideos, fetchPopularVideos } from "../thunks/videos.thunks";
 
 

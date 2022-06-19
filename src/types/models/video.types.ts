@@ -14,4 +14,5 @@ export interface IVideo {
     subscribersCount: number
     likes: string[]
     dislikes: string[]
+    commentsCount: number
 }

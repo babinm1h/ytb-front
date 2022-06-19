@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IAuthResponse } from "../../API/auth.service";
 import { IUser } from "../../types/models/user.types";
 import { IAuthState } from "../../types/slices/auth.slice.types";
-import { getAuth,  login, regisrate } from "../thunks/auth.thunks";
+import { getAuth, login, regisrate, toglgeSubscribeUser } from "../thunks/auth.thunks";
 
 
 const initialState: IAuthState = {
@@ -10,7 +10,8 @@ const initialState: IAuthState = {
     isProccessing: false,
     loginError: '',
     registerError: '',
-    user: null
+    user: null,
+    isSubscribing: false
 }
 
 
@@ -58,6 +59,24 @@ const authSlice = createSlice({
         },
         [getAuth.rejected.type]: (state, action) => {
             state.isInitializing = false
+        },
+
+
+        [toglgeSubscribeUser.fulfilled.type]: (state, action: PayloadAction<string>) => {
+            if (state.user) {
+                if (state.user.subscriptions.includes(action.payload)) {
+                    state.user.subscriptions = state.user.subscriptions.filter(id => id !== action.payload)
+                } else {
+                    state.user.subscriptions.push(action.payload)
+                }
+            }
+            state.isSubscribing = false
+        },
+        [toglgeSubscribeUser.pending.type]: (state, action) => {
+            state.isSubscribing = true
+        },
+        [toglgeSubscribeUser.rejected.type]: (state, action) => {
+            state.isSubscribing = false
         },
     }
 })

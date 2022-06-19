@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 import { AllRoutes } from "../components/AppRoutes/AppRoutes"
 import { likeVideo, dislikeVideo } from "../redux/thunks/videoPage.thunks"
 import { IVideo } from "../types/models/video.types"
@@ -10,7 +10,6 @@ export const useVideoLikes = (video: IVideo) => {
     const { user: authUser } = useAppSelector(state => state.auth)
     const nav = useNavigate()
     const dispatch = useAppDispatch()
-    const { id } = useParams() as { id: string }
 
     const [isLiked, setIsLiked] = useState(authUser ? video.likes.includes(authUser._id) : false)
     const [isDisliked, setIsDisliked] = useState(authUser ? video.dislikes.includes(authUser._id) : false)
@@ -25,7 +24,7 @@ export const useVideoLikes = (video: IVideo) => {
         } else {
             setIsLiked(true)
         }
-        dispatch(likeVideo(id))
+        dispatch(likeVideo(video._id))
     }
 
     const handleDislike = () => {
@@ -38,7 +37,7 @@ export const useVideoLikes = (video: IVideo) => {
         } else {
             setIsDisliked(true)
         }
-        dispatch(dislikeVideo(id))
+        dispatch(dislikeVideo(video._id))
     }
 
     useEffect(() => {
@@ -48,7 +47,6 @@ export const useVideoLikes = (video: IVideo) => {
         }
     }, [authUser])
 
-    console.log(video._id);
 
 
     return { authUser, isLiked, isDisliked, handleDislike, handleLike }

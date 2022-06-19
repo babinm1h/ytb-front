@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { AuthService } from "../../API/auth.service";
+import { UsersService } from "../../API/users.service";
 import { ILoginArgs, IRegisterArgs } from "../../types/args.types";
 import { AuthActionTypes } from "../../types/slices/auth.slice.types";
 
@@ -37,4 +38,16 @@ export const getAuth = createAsyncThunk(AuthActionTypes.getAuth,
             return thunk.rejectWithValue(err.response?.data.message)
         }
     })
+
+
+export const toglgeSubscribeUser = createAsyncThunk(AuthActionTypes.subscribe,
+    async (userId: string, thunk) => {
+        try {
+            const data = await UsersService.toggleSubscribe(userId)
+            return data
+        } catch (err: any) {
+            return thunk.rejectWithValue(err.response?.data.message)
+        }
+    })
+
 

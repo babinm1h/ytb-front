@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { stat } from "fs";
+import { IComment } from "../../types/models/comment.types";
 import { IVideo } from "../../types/models/video.types";
 import { IVideoPageState } from "../../types/slices/videoPage.slice.types";
-import { dislikeVideo, fetchSingleVideo, likeVideo } from "../thunks/videoPage.thunks";
+import { commentVideo, deleteComment, dislikeVideo, fetchSingleVideo, fetchVideoComments, likeVideo } from "../thunks/videoPage.thunks";
 
 
 
@@ -11,7 +11,8 @@ const initialState: IVideoPageState = {
     isCommentsLoading: true,
     isVideoLoading: true,
     video: null,
-    isProcessing: false
+    isProcessing: false,
+    isCommenting: false
 }
 
 
@@ -79,6 +80,44 @@ const videoPageSlice = createSlice({
         },
         [dislikeVideo.rejected.type]: (state, action) => {
             state.isProcessing = false
+        },
+
+
+        [fetchVideoComments.fulfilled.type]: (state, action: PayloadAction<IComment[]>) => {
+            state.comments = action.payload
+            state.isCommentsLoading = false
+        },
+        [fetchVideoComments.pending.type]: (state, action) => {
+            state.isCommentsLoading = true
+        },
+        [fetchVideoComments.rejected.type]: (state, action) => {
+            state.isCommentsLoading = false
+        },
+
+
+        [commentVideo.fulfilled.type]: (state, action: PayloadAction<IComment>) => {
+            state.comments.push(action.payload)
+            if (state.video) state.video.commentsCount += 1;
+            state.isProcessing = false
+        },
+        [commentVideo.pending.type]: (state, action) => {
+            state.isProcessing = true
+        },
+        [commentVideo.rejected.type]: (state, action) => {
+            state.isProcessing = false
+        },
+
+
+        [deleteComment.fulfilled.type]: (state, action: PayloadAction<string>) => {
+            state.comments = state.comments.filter(c => c._id !== action.payload)
+            if (state.video) state.video.commentsCount -= 1;
+            state.isCommenting = false
+        },
+        [deleteComment.pending.type]: (state, action) => {
+            state.isCommenting = true
+        },
+        [deleteComment.rejected.type]: (state, action) => {
+            state.isCommenting = false
         },
     }
 })

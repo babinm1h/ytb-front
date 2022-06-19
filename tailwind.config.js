@@ -17,6 +17,7 @@ module.exports = {
       },
       boxShadow: {
         'xs': '0 0px 1px 0px rgb(6, 95, 212)',
+        'popup': '0px 1px 5px rgba(0,0,0,0.35)'
       },
       padding: {
         'sidebar': '135px',

@@ -16,7 +16,7 @@ const ActionsBlock = () => {
         <>
             {user
                 ? <div className="flex gap-5 items-center">
-                    <button className="border border-transparent active:border-gray-200 w-10 h-10 rounded-[50%] active:bg-gray-200 p-1 flex items-center justify-center transition-all">
+                    <button className="border border-transparent active:border-gray-200 w-10 h-10 rounded-[50%] active:bg-lightGray p-1 flex items-center justify-center transition-all">
                         <VideoPlus className='w-10 h-10' />
                     </button>
                     <div className="w-10 h-10 flex-shrink-0">

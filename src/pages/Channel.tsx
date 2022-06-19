@@ -6,6 +6,7 @@ import MainLayout from '../components/MainLayout';
 import Slider from '../components/Slider';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { useAppSelector } from '../hooks/useAppSelector';
+import { resetChannelPage } from '../redux/slices/channelPage.slice';
 import { fetchChannelPopularVideos, fetchProfile } from '../redux/thunks/channelPage.thunks';
 
 const Channel = () => {
@@ -18,7 +19,10 @@ const Channel = () => {
             dispatch(fetchChannelPopularVideos(id))
             dispatch(fetchProfile(id))
         }
-    }, [])
+        return () => {
+            dispatch(resetChannelPage())
+        }
+    }, [id])
 
     if (isLoading || !user) return <div>load</div>
 
@@ -31,7 +35,9 @@ const Channel = () => {
 
                 <section className="py-7 border-b border-gray-300">
                     <h2 className="sectionTitle">Popular videos</h2>
-                    <Slider videos={popularVideos} channelSlider={true} />
+                    {popularVideos.length > 0
+                        ? < Slider videos={popularVideos} channelSlider={true} />
+                        : <h2 className='text-gray-500 text-xl text-center'>No videos yet</h2>}
                 </section>
             </div>
         </MainLayout>

@@ -16,7 +16,11 @@ const initialState: IChannelPageState = {
 const channelPageSlice = createSlice({
     initialState,
     name: 'channelPage',
-    reducers: {},
+    reducers: {
+        resetChannelPage(state) {
+            state.user = null
+        }
+    },
     extraReducers: {
         [fetchProfile.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
             state.isLoading = false
@@ -45,4 +49,5 @@ const channelPageSlice = createSlice({
 
 
 
+export const { resetChannelPage } = channelPageSlice.actions
 export default channelPageSlice.reducer;

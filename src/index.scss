@@ -111,4 +111,8 @@ h6 {
     .actionIcon{
         @apply w-10 h-10 active:bg-lightGray rounded-[50%] p-2 transition-colors
     }
+
+    .popupLi{
+        @apply hover:bg-lightGray px-5 py-2 flex items-center gap-2 cursor-pointer
+    }
 }
