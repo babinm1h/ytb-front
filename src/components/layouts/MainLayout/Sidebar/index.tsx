@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { HomeIcon, VideosIcon, CollectionVideos } from '../../../assets/icons';
-import { AllRoutes } from '../../AppRoutes/AppRoutes';
+import { HomeIcon, VideosIcon, CollectionVideos } from '../../../../assets/icons';
+import { AllRoutes } from '../../../AppRoutes/AppRoutes';
 
 const Sidebar = () => {
     return (

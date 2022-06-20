@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import MainLayout from '../components/MainLayout';
+import MainLayout from '../components/layouts/MainLayout';
 import CommentsForm from '../components/UI/forms/CommentsForm';
 import VideoInfo from '../components/VideoPage/VideoInfo';
 import { useAppDispatch } from '../hooks/useAppDispatch';

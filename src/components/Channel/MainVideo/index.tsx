@@ -2,7 +2,7 @@ import React from 'react';
 
 const MainVideo = () => {
     return (
-        <div className="border-b border-gray-300 py-7">
+        <div className="border-b border-gray-300 py-7 mt-5">
             <div className="flex gap-5">
                 <div className="max-w-[400px] h-[220px] flex-shrink-0">
                     <img src="https://i.ytimg.com/vi/Od5H_CiU2vM/maxresdefault.jpg" alt="preview" className="object-contain w-full h-full" />

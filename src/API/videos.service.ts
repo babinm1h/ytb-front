@@ -16,8 +16,8 @@ export class VideosService {
     }
 
 
-    static async search() {
-        const { data } = await $instance.get("/videos/search", { params: {} })
+    static async search(searchTerm: string) {
+        const { data } = await $instance.get("/videos/search", { params: { searchTerm } })
         return data
     }
 
@@ -32,4 +32,11 @@ export class VideosService {
         const { data } = await $instance.get(`/videos/most/popular/${userId}`,)
         return data
     }
+
+
+    static async fetchChannelVideos(userId: string) {
+        const { data } = await $instance.get(`/videos/user/${userId}`,)
+        return data
+    }
+
 }

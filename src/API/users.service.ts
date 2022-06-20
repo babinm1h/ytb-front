@@ -11,13 +11,13 @@ export class UsersService {
     }
 
 
-    static async fetchPopular() {
+    static async fetchPopular(): Promise<IUser[]> {
         const { data } = await $instance.get(`/users/get/popular`)
         return data
     }
 
 
-    static async updateUser(args: IUpdateUserArgs) {
+    static async updateUser(args: IUpdateUserArgs): Promise<IUser> {
         const { data } = await $instance.put(`/users/update`, { args })
         return data
     }

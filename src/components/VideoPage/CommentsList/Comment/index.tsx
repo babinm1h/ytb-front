@@ -17,7 +17,7 @@ interface ICommentProps {
 const Comment: FC<ICommentProps> = ({ comment }) => {
     const dispatch = useAppDispatch()
     const { user } = useAppSelector(state => state.auth)
-    const { isVisible, ref, setIsVisible, onToggleVisible } = useOutsideClick(false)
+    const { isVisible, ref, onToggleVisible } = useOutsideClick(false)
 
     const handleDeleteComment = () => {
         dispatch(deleteComment(comment._id))
@@ -31,7 +31,7 @@ const Comment: FC<ICommentProps> = ({ comment }) => {
             </div>
             <div className="flex-grow">
                 <div className="flex items-center gap-2">
-                    <NavLink to={AllRoutes.channel + `/${comment.user._id}`} className="font-semibold">
+                    <NavLink to={AllRoutes.channel + `/${comment.user._id}/home`} className="font-semibold">
                         {comment.user.name}
                     </NavLink>
                     <span className="text-myGray text-[12px] flex-grow">

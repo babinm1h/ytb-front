@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { MenuIcon } from '../../../assets/icons';
-import logo from '../../../assets/logo.svg'
-import { AllRoutes } from '../../AppRoutes/AppRoutes';
+import { MenuIcon } from '../../../../assets/icons';
+import logo from '../../../../assets/logo.svg'
+import { AllRoutes } from '../../../AppRoutes/AppRoutes';
 import ActionsBlock from './ActionsBlock';
 import SearchBlock from './SearchBlock';
 

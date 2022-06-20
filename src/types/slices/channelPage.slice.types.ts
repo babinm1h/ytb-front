@@ -7,10 +7,12 @@ export interface IChannelPageState {
     isLoading: boolean
     popularVideos: IVideo[]
     videos: IVideo[]
+    isVideosLoading: boolean
 }
 
 
 export enum ChannelPageActionTypes {
     fetch_profile = 'channelPage/fetch_profile',
     fetch_popular = 'channelPage/fetch_popular',
+    fetch_videos = 'channelPage/fetch_videos',
 }

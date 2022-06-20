@@ -74,6 +74,9 @@ h6 {
     font-size: inherit;
     font-weight: inherit;
 }
+body{
+    @apply scrollbar-thin scrollbar-thumb-myGray overflow-y-scroll
+}
 /*--------------------*/
 
 @tailwind base;
@@ -105,7 +108,7 @@ h6 {
     }
 
     .sectionTitle{
-        @apply font-semibold text-xl mb-2 
+        @apply font-medium text-xl mb-2 
     }
 
     .actionIcon{
@@ -113,6 +116,36 @@ h6 {
     }
 
     .popupLi{
-        @apply hover:bg-lightGray px-5 py-2 flex items-center gap-2 cursor-pointer
+        @apply hover:bg-lightGray px-5 py-2 flex items-center gap-3 cursor-pointer whitespace-nowrap transition-colors;
+    }
+
+    .preview{
+        @apply bg-myGray;
+    }
+
+    .channelTab{
+        @apply px-7 py-4 uppercase relative hover:bg-gray-200 transition-colors;
+        &::before{
+            content:none;
+            position:absolute;
+            background-color:black;
+            width:100%;
+            height:3px;
+            left:0;
+            right:0;
+            bottom:0;
+            display:block;
+            @keyframes tab {
+                0% {
+                    transform: scaleX(0);
+                    opacity: 0.3;
+                }
+                100% {
+                    transform: scaleX(1);
+                    opacity: 1;
+                }
+            }
+                animation: tab 0.3s ease;   
+        }
     }
 }

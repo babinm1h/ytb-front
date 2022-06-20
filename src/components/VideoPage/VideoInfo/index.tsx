@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import { LikeIcon, DislikeIcon, FillLikeIcon, FillDislikeIcon } from '../../../assets/icons';
 import { useAppSelector } from '../../../hooks/useAppSelector';
+import { useSubscribe } from '../../../hooks/useSubscribe';
 import { useVideoLikes } from '../../../hooks/useVideoLikes'
 import { IVideo } from '../../../types/models/video.types';
 import { roundNumber } from '../../../utils/roundNumber';
@@ -15,6 +16,10 @@ interface IVideoInfoProps {
 const VideoInfo: FC<IVideoInfoProps> = ({ video }) => {
     const { isProcessing } = useAppSelector(state => state.videoPage)
     const { handleDislike, handleLike, isDisliked, isLiked, authUser } = useVideoLikes(video)
+
+    const { onToggleSubscribe, subsCount, isSubscribed } = useSubscribe(video.user)
+
+
 
     return (
         <>
@@ -51,22 +56,26 @@ const VideoInfo: FC<IVideoInfoProps> = ({ video }) => {
             <div className="py-5 border-b border-gray-300">
                 <div className="flex justify-between">
                     <div className="flex items-center gap-3">
-                        <NavLink to={AllRoutes.channel + `/${video.user._id}`}
+                        <NavLink to={AllRoutes.channel + `/${video.user._id}/home`}
                             className="flex-shrink-0 w-12 h-12">
                             <img src={video?.user.avatar} alt="author" className="w-full h-full rounded-[50%]" />
                         </NavLink>
                         <div className="">
-                            <NavLink to={AllRoutes.channel + `/${video.user._id}`} className="font-medium">
+                            <NavLink to={AllRoutes.channel + `/${video.user._id}/home`} className="font-medium">
                                 {video?.user.name}
                             </NavLink>
                             <span className="text-myGray flex items-center">
-                                {roundNumber(video?.user.subscribersCount || 0)} subscribers
+                                {roundNumber(subsCount)} subscribers
                             </span>
                         </div>
                     </div>
-                    <button className="subBtn text-white bg-red-500">
-                        subscribe
-                    </button>
+                    {isSubscribed
+                        ? <button className="subBtn text-gray-500 bg-lightGray" onClick={onToggleSubscribe}>
+                            subscribed
+                        </button>
+                        : <button className="subBtn text-white bg-red-500" onClick={onToggleSubscribe}>
+                            subscribe
+                        </button>}
                 </div>
                 <p className="mt-5">{video?.description}</p>
             </div>

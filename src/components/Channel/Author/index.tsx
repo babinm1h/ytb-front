@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { useAppDispatch } from '../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../hooks/useAppSelector';
+import { useSubscribe } from '../../../hooks/useSubscribe';
 import { toglgeSubscribeUser } from '../../../redux/thunks/auth.thunks';
 import { IUser } from '../../../types/models/user.types';
 import ChannelButtons from './Buttons/index ';
@@ -10,32 +11,18 @@ interface IAuthorProps {
 }
 
 const Author: FC<IAuthorProps> = ({ user }) => {
-    const dispatch = useAppDispatch()
-    const { user: authUser } = useAppSelector(state => state.auth)
-    const [subsCount, setSubsCount] = useState<number>(user.subscribersCount)
 
-    const isSubscribed = authUser && authUser.subscriptions.includes(user._id)
-
-
-    const onToggleSubscribe = () => {
-        if (isSubscribed) {
-            setSubsCount(prev => prev - 1)
-        } else {
-            setSubsCount(prev => prev + 1)
-        }
-        dispatch(toglgeSubscribeUser(user._id))
-    }
-
+    const { authUser, onToggleSubscribe, subsCount, isSubscribed } = useSubscribe(user)
 
     return (
-        <div className="">
+        <div className="mb-10">
             {user && user.banner && <div className="w-full h-[200px]">
                 <img src="https://i.ytimg.com/vi/Od5H_CiU2vM/maxresdefault.jpg" alt="wallpaper"
                     className="object-cover w-full h-full" />
             </div>}
 
             <div className="flex items-center mt-5 gap-5">
-                <div className="w-20 h-20 rounded-[50%]">
+                <div className="w-20 h-20 rounded-[50%] flex-shrink-0">
                     <img src={user?.avatar} alt={user?.name}
                         className="object-cover w-full h-full rounded-[50%]" />
                 </div>

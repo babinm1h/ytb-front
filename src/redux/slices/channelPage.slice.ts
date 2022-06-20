@@ -2,14 +2,15 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { IUser } from "../../types/models/user.types";
 import { IVideo } from "../../types/models/video.types";
 import { IChannelPageState } from "../../types/slices/channelPage.slice.types";
-import { fetchChannelPopularVideos, fetchProfile } from "../thunks/channelPage.thunks";
+import { fetchChannelPopularVideos, fetchChannelVideos, fetchProfile } from "../thunks/channelPage.thunks";
 
 
 const initialState: IChannelPageState = {
     isLoading: true,
     popularVideos: [],
     user: null,
-    videos: []
+    videos: [],
+    isVideosLoading: true
 }
 
 
@@ -35,14 +36,26 @@ const channelPageSlice = createSlice({
 
 
         [fetchChannelPopularVideos.fulfilled.type]: (state, action: PayloadAction<IVideo[]>) => {
-            state.isLoading = false
+            state.isVideosLoading = false
             state.popularVideos = action.payload
         },
         [fetchChannelPopularVideos.pending.type]: (state, action) => {
-            state.isLoading = true
+            state.isVideosLoading = true
         },
         [fetchChannelPopularVideos.rejected.type]: (state, action) => {
-            state.isLoading = false
+            state.isVideosLoading = false
+        },
+
+
+        [fetchChannelVideos.fulfilled.type]: (state, action: PayloadAction<IVideo[]>) => {
+            state.isVideosLoading = false
+            state.videos = action.payload
+        },
+        [fetchChannelVideos.pending.type]: (state, action) => {
+            state.isVideosLoading = true
+        },
+        [fetchChannelVideos.rejected.type]: (state, action) => {
+            state.isVideosLoading = false
         },
     }
 })

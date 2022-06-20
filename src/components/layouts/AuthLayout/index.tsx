@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
-import logo from "../../assets/logo.svg"
+import logo from "../../../assets/logo.svg"
 
 interface IAuthLayoutProps {
     title: string

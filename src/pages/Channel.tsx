@@ -1,46 +1,63 @@
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import Author from '../components/Channel/Author';
-import MainVideo from '../components/Channel/MainVideo';
-import MainLayout from '../components/MainLayout';
-import Slider from '../components/Slider';
+import { useEffect, useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import ChannelLayout from '../components/layouts/ChannelLayout';
+import ChannelAbout from '../components/layouts/ChannelLayout/ChannelTabs/About';
+import ChannelHome from '../components/layouts/ChannelLayout/ChannelTabs/Home';
+import ChannelVideos from '../components/layouts/ChannelLayout/ChannelTabs/Videos';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { useAppSelector } from '../hooks/useAppSelector';
 import { resetChannelPage } from '../redux/slices/channelPage.slice';
-import { fetchChannelPopularVideos, fetchProfile } from '../redux/thunks/channelPage.thunks';
+import { fetchChannelPopularVideos, fetchChannelVideos, fetchProfile } from '../redux/thunks/channelPage.thunks';
+
+export enum ChannelTabs {
+    home = 'home',
+    videos = 'videos',
+    about = 'about'
+}
 
 const Channel = () => {
+    const { pathname } = useLocation()
     const dispatch = useAppDispatch()
     const { id } = useParams() as { id: string }
+
     const { popularVideos, isLoading, user } = useAppSelector(state => state.channelPage)
+    const [activeTab, setActiveTab] = useState<ChannelTabs>(ChannelTabs.home)
 
     useEffect(() => {
         if (id) {
             dispatch(fetchChannelPopularVideos(id))
             dispatch(fetchProfile(id))
+            dispatch(fetchChannelVideos(id))
         }
         return () => {
             dispatch(resetChannelPage())
         }
     }, [id])
 
-    if (isLoading || !user) return <div>load</div>
+
+    useEffect(() => {
+        const path = pathname.split('/').pop();
+        if (!path) return;
+        if (path === ChannelTabs.videos) setActiveTab(ChannelTabs.videos)
+        if (path === ChannelTabs.about) setActiveTab(ChannelTabs.about)
+        if (path === ChannelTabs.home) setActiveTab(ChannelTabs.home)
+    }, [pathname])
+
+    if (!user || isLoading) return <div>load</div>
 
     return (
-        <MainLayout>
-            <div className="px-10">
-                <Author user={user} />
+        <ChannelLayout user={user}>
+            {activeTab === ChannelTabs.home
+                ? popularVideos.length > 0
+                    ? <ChannelHome popularVideos={popularVideos} />
+                    : <h3 className='text-gray-500 text-xl text-center py-5'>
+                        This channel doesn't have any content
+                    </h3>
 
-                <MainVideo />
-
-                <section className="py-7 border-b border-gray-300">
-                    <h2 className="sectionTitle">Popular videos</h2>
-                    {popularVideos.length > 0
-                        ? < Slider videos={popularVideos} channelSlider={true} />
-                        : <h2 className='text-gray-500 text-xl text-center'>No videos yet</h2>}
-                </section>
-            </div>
-        </MainLayout>
+                : activeTab === ChannelTabs.videos
+                    ? <ChannelVideos />
+                    : <ChannelAbout owner={user} />}
+        </ChannelLayout>
     );
 };
 

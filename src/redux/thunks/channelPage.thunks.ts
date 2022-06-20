@@ -24,3 +24,14 @@ export const fetchChannelPopularVideos = createAsyncThunk(ChannelPageActionTypes
             return thunk.rejectWithValue(err)
         }
     })
+
+
+export const fetchChannelVideos = createAsyncThunk(ChannelPageActionTypes.fetch_videos,
+    async (userId: string, thunk) => {
+        try {
+            const data = await VideosService.fetchChannelVideos(userId)
+            return data
+        } catch (err) {
+            return thunk.rejectWithValue(err)
+        }
+    })
