@@ -1,9 +1,7 @@
-import { FC, useState } from 'react';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
-import { useAppSelector } from '../../../hooks/useAppSelector';
+import { FC } from 'react';
 import { useSubscribe } from '../../../hooks/useSubscribe';
-import { toglgeSubscribeUser } from '../../../redux/thunks/auth.thunks';
 import { IUser } from '../../../types/models/user.types';
+import { roundNumber } from '../../../utils/roundNumber';
 import ChannelButtons from './Buttons/index ';
 
 interface IAuthorProps {
@@ -28,7 +26,7 @@ const Author: FC<IAuthorProps> = ({ user }) => {
                 </div>
                 <div className="flex-grow">
                     <h2 className="font-medium text-2xl">{user?.name}</h2>
-                    <div className="text-myGray">{subsCount} subscribers</div>
+                    <div className="text-myGray">{roundNumber(subsCount)} subscribers</div>
                 </div>
                 <ChannelButtons authUser={authUser} userId={user._id} isSubscribed={isSubscribed}
                     onToggleSubscribe={onToggleSubscribe} />

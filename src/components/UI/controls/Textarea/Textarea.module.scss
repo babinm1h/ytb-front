@@ -1,0 +1,6 @@
+.wrapper{
+    @apply border w-full rounded-md flex flex-col px-2 mb-10; 
+}
+.label{
+    @apply text-[12px] bg-transparent py-1 
+}

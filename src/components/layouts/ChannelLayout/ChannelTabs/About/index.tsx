@@ -8,7 +8,7 @@ interface IChannelAboutProps {
 
 const ChannelAbout: FC<IChannelAboutProps> = ({ owner }) => {
     return (
-        <section className="py-10 flex gap-10">
+        <section className="py-10 flex gap-10 flex-col md:flex-row">
             <div className="flex-[2]">
                 <div className="border-b border-gray-300">
                     <span className="text-[16px]">Description</span>

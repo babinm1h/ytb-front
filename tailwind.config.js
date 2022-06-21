@@ -22,7 +22,8 @@ module.exports = {
       padding: {
         'sidebar': '135px',
         'header': '70px',
-        'sidebar-mini': '105px',
+        'sidebar-md': '105px',
+        'sidebar-sm': '80px',
       },
       screens: {
         "xs": "480px"
@@ -42,7 +43,12 @@ module.exports = {
       },
       animation: {
         'tab': "tab 0.3s ease"
-      }
+      },
+      variants: {
+        extend: {
+          display: ["group-hover"],
+        },
+      },
     },
   },
   plugins: [

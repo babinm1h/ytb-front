@@ -20,3 +20,4 @@ export interface IUpdateUserArgs {
     avatar?: string
     banner?: string
 }
+

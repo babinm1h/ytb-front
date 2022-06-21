@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../../types/models/user.types";
 import { IVideo } from "../../types/models/video.types";
 import { IVideosState } from "../../types/slices/videos.slice.types";
-import { fetchAllVideos, fetchPopularUsers, fetchPopularVideos, searchVideos } from "../thunks/videos.thunks";
+import { createVideo, fetchAllVideos, fetchPopularUsers, fetchPopularVideos, searchVideos } from "../thunks/videos.thunks";
 
 
 const initialState: IVideosState = {
@@ -12,7 +12,9 @@ const initialState: IVideosState = {
     popularUsers: [],
     isUsersLoading: true,
     isSearching: false,
-    searchedVideos: []
+    searchedVideos: [],
+    createPending: false,
+    createSuccess: false
 }
 
 
@@ -65,6 +67,19 @@ const videosSlice = createSlice({
         },
         [searchVideos.rejected.type]: (state, action) => {
             state.isSearching = false
+        },
+
+
+        [createVideo.fulfilled.type]: (state, action: PayloadAction<IVideo>) => {
+            state.createPending = false
+            if (action.payload.isPublic) state.videos = [action.payload, ...state.videos];
+            state.createSuccess = true
+        },
+        [createVideo.pending.type]: (state, action) => {
+            state.createPending = true
+        },
+        [createVideo.rejected.type]: (state, action) => {
+            state.createPending = false
         },
     }
 })

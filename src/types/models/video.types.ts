@@ -14,5 +14,6 @@ export interface IVideo {
     subscribersCount: number
     likes: string[]
     dislikes: string[]
+    isPublic: boolean
     commentsCount: number
 }

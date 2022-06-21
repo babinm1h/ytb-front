@@ -12,7 +12,6 @@ export const regisrate = createAsyncThunk(AuthActionTypes.register,
             const data = await AuthService.register(payload)
             return data
         } catch (err: any) {
-            console.log(err.response?.data.message);
             return thunk.rejectWithValue(err.response?.data.message)
         }
     })

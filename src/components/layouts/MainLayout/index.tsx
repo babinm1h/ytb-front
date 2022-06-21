@@ -10,7 +10,7 @@ const MainLayout: FC<PropsWithChildren<IMainLayoutProps>> = ({ children }) => {
         <>
             <Header />
             <Sidebar />
-            <main className="w-full h-full lg:pl-sidebar pt-header pl-sidebar-mini flex-grow">
+            <main className="w-full h-full lg:pl-sidebar pt-header pl-sidebar-sm sm:pl-sidebar-md flex-grow">
                 {children}
             </main>
         </>

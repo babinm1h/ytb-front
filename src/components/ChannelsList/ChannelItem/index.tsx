@@ -11,13 +11,17 @@ interface IChannelItemProps {
 const ChannelItem: FC<IChannelItemProps> = ({ user }) => {
 
     return (
-        <NavLink to={AllRoutes.channel + `/${user._id}/home`}>
-            <div className='px-3 py-2 hover:bg-lightGray self-start flex flex-col items-center justify-center cursor-pointer flex-shrink-0'>
-                <div className="flex-shrink-0 w-12 h-12 mb-2">
+        <NavLink to={AllRoutes.channel + `/${user._id}/home`} className='channelItem'>
+            <div className='flex flex-col items-center justify-center cursor-pointer flex-shrink-0'>
+                <div className="flex-shrink-0 md:w-12 md:h-12 mb-2 w-8 h-8">
                     <img src={user.avatar} alt={user.name} className="w-full h-full rounded-[50%]" />
                 </div>
-                <span className="font-semibold">{user.name}</span>
-                <span className="text-myGray">{roundNumber(user.subscribersCount)} subscribers</span>
+                <span className="hidden sm:inline-block font-semibold text-center sm:line-clamp-1">
+                    {user.name}
+                </span>
+                <span className="hidden text-myGray text-[12px] sm:line-clamp-1 sm:inline-block text-center">
+                    {roundNumber(user.subscribersCount)} subscribers
+                </span>
             </div>
         </NavLink>
     );

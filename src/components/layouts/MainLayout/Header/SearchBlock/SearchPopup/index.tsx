@@ -9,7 +9,7 @@ interface ISearchPopupProps {
 
 const SearchPopup: FC<PropsWithChildren<ISearchPopupProps>> = ({ videos, isSearching }) => {
     return (
-        <div className="bg-white shadow-popup absolute top-11 right-0 left-0 max-h-[400px] overflow-hidden overflow-y-scroll scrollbar-thin scrollbar-thumb-myGray border-gray-200">
+        <div className="bg-white shadow-popup absolute top-11 right-0 left-0 max-h-[400px] overflow-hidden overflow-y-scroll myScroll border-gray-200">
             <ul className="flex flex-col w-full">
                 {isSearching
                     ? <div>load</div>

@@ -14,4 +14,5 @@ export interface IUser {
     dislikes: string[]
     createdAt: string
     totalViews: number
+    subscribers: string[]
 }

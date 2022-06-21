@@ -46,3 +46,14 @@ export const searchVideos = createAsyncThunk(VideosActionTypes.search_videos,
             return thunk.rejectWithValue(err)
         }
     })
+
+
+export const createVideo = createAsyncThunk(VideosActionTypes.create_video,
+    async (formData: FormData, thunk) => {
+        try {
+            const data = await VideosService.createVideo(formData)
+            return data
+        } catch (err) {
+            return thunk.rejectWithValue(err)
+        }
+    })

@@ -5,7 +5,7 @@ import { AllRoutes } from '../../../AppRoutes/AppRoutes';
 
 const Sidebar = () => {
     return (
-        <div className="bg-white fixed top-[56px] left-0 h-full z-[2]">
+        <div className="fixed top-[56px] left-0 h-full z-[1] bg-white">
             <nav className="flex flex-col items-center md:items-start">
 
                 <NavLink to={AllRoutes.home} className="navItem">
@@ -15,7 +15,7 @@ const Sidebar = () => {
 
                 <NavLink to={AllRoutes.home} className="navItem">
                     <CollectionVideos className='w-7 h-7' />
-                    Subscribes
+                    Subscriptions
                 </NavLink>
 
                 <NavLink to={AllRoutes.home} className="navItem">

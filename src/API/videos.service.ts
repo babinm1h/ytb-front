@@ -1,4 +1,4 @@
-import { $instance } from ".";
+import { $authInstance, $instance } from ".";
 import { IVideo } from "../types/models/video.types";
 
 
@@ -39,4 +39,9 @@ export class VideosService {
         return data
     }
 
+
+    static async createVideo(formData: FormData): Promise<IVideo> {
+        const { data } = await $authInstance.post('/videos', formData)
+        return data
+    }
 }

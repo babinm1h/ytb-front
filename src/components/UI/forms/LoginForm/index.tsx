@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { login } from '../../../redux/thunks/auth.thunks';
-import { validate } from '../../../utils/validate';
-import { AllRoutes } from '../../AppRoutes/AppRoutes';
-import AuthFormControl from '../controls/AuthFormControl';
+import { useAppDispatch } from '../../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../../hooks/useAppSelector';
+import { login } from '../../../../redux/thunks/auth.thunks';
+import { ILoginArgs } from '../../../../types/args.types';
+import { validate } from '../../../../utils/validate';
+import { AllRoutes } from '../../../AppRoutes/AppRoutes';
+import AuthFormControl from '../../controls/AuthFormControl';
 
 
 interface IForm {
@@ -22,7 +23,7 @@ const LoginForm = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm<IForm>()
 
-    const onSubmit: SubmitHandler<IForm> = (data) => {
+    const onSubmit: SubmitHandler<IForm> = (data: ILoginArgs) => {
         dispatch(login(data))
     }
 

@@ -18,7 +18,11 @@ const initialState: IAuthState = {
 const authSlice = createSlice({
     name: "auth",
     initialState,
-    reducers: {},
+    reducers: {
+        logout(state) {
+            state.user = null;
+        }
+    },
     extraReducers: {
         [regisrate.fulfilled.type]: (state, action: PayloadAction<IAuthResponse>) => {
             state.isProccessing = false
@@ -82,4 +86,5 @@ const authSlice = createSlice({
 })
 
 
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

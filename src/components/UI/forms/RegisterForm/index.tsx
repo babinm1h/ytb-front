@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { AllRoutes } from '../../AppRoutes/AppRoutes';
-import AuthFormControl from '../controls/AuthFormControl';
+import { AllRoutes } from '../../../AppRoutes/AppRoutes';
+import AuthFormControl from '../../controls/AuthFormControl';
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { validate } from '../../../utils/validate';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { regisrate } from '../../../redux/thunks/auth.thunks';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
+import { validate } from '../../../../utils/validate';
+import { useAppSelector } from '../../../../hooks/useAppSelector';
+import { regisrate } from '../../../../redux/thunks/auth.thunks';
+import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 
 interface IForm {
     name: string

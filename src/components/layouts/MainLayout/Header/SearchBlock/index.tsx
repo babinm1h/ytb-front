@@ -13,7 +13,7 @@ const SearchBlock = () => {
 
     const [searchTerm, setSearchTerm] = useState<string>('')
     const debValue = useDebounce(searchTerm, 700)
-    const { isVisible, onToggleVisible, setIsVisible, ref } = useOutsideClick(false)
+    const { isVisible, setIsVisible, ref } = useOutsideClick(false)
 
     const handleChangeTerm = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value)

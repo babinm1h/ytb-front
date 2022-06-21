@@ -1,9 +1,9 @@
-import { AiOutlineSearch, AiOutlineSetting, AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike, AiOutlinePlayCircle } from 'react-icons/ai'
+import { AiOutlineSearch, AiOutlineSetting, AiOutlineLike, AiOutlineDislike, AiFillLike, AiFillDislike, AiOutlinePlayCircle, AiOutlineClose } from 'react-icons/ai'
 import { VscDeviceCameraVideo, VscMenu, VscHome } from "react-icons/vsc"
-import { MdOutlineVideoLibrary, MdOutlineLogout } from 'react-icons/md'
+import { MdOutlineVideoLibrary, MdOutlineLogout, MdFileUpload } from 'react-icons/md'
 import { IoVideocamOutline, IoTrashOutline } from "react-icons/io5"
 import { HiOutlineUserCircle } from "react-icons/hi"
-import { BiDotsVerticalRounded, BiUserCircle } from "react-icons/bi"
+import { BiDotsVerticalRounded, BiUserCircle, BiImageAdd } from "react-icons/bi"
 
 export {
     AiOutlineSearch as SearchIcon,
@@ -22,5 +22,8 @@ export {
     IoTrashOutline as TrashIcon,
     BiUserCircle as UserIcon,
     AiOutlineSetting as SettingsIcon,
-    MdOutlineLogout as LogoutIcon
+    MdOutlineLogout as LogoutIcon,
+    BiImageAdd as PlusImage,
+    MdFileUpload as UploadIcon,
+    AiOutlineClose as CloseIcon
 }

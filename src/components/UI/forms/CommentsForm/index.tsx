@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useAppDispatch } from '../../../hooks/useAppDispatch';
-import { useAppSelector } from '../../../hooks/useAppSelector';
-import { commentVideo } from '../../../redux/thunks/videoPage.thunks';
-import { IUser } from '../../../types/models/user.types';
-import { validate } from '../../../utils/validate';
+import { useAppDispatch } from '../../../../hooks/useAppDispatch';
+import { useAppSelector } from '../../../../hooks/useAppSelector';
+import { commentVideo } from '../../../../redux/thunks/videoPage.thunks';
+import { IUser } from '../../../../types/models/user.types';
+import { validate } from '../../../../utils/validate';
 
 interface ICommentsFormProps {
     user: IUser
