@@ -1,5 +1,4 @@
 import { $authInstance, $instance } from ".";
-import { IUpdateUserArgs } from "../types/args.types";
 import { IUser } from "../types/models/user.types";
 
 
@@ -17,8 +16,8 @@ export class UsersService {
     }
 
 
-    static async updateUser(args: IUpdateUserArgs): Promise<IUser> {
-        const { data } = await $instance.put(`/users/update`, { args })
+    static async updateUser(formData: FormData): Promise<IUser> {
+        const { data } = await $authInstance.put(`/users/update`, formData)
         return data
     }
 

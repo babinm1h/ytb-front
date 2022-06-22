@@ -50,3 +50,16 @@ export const toglgeSubscribeUser = createAsyncThunk(AuthActionTypes.subscribe,
     })
 
 
+
+
+export const updateUser = createAsyncThunk(AuthActionTypes.update_user,
+    async (formData: FormData, thunk) => {
+        try {
+            const data = await UsersService.updateUser(formData)
+            return data
+        } catch (err: any) {
+            return thunk.rejectWithValue(err.response?.data.message)
+        }
+    })
+
+

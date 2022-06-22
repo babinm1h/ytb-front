@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IAuthResponse } from "../../API/auth.service";
 import { IUser } from "../../types/models/user.types";
 import { IAuthState } from "../../types/slices/auth.slice.types";
-import { getAuth, login, regisrate, toglgeSubscribeUser } from "../thunks/auth.thunks";
+import { getAuth, login, regisrate, toglgeSubscribeUser, updateUser } from "../thunks/auth.thunks";
 
 
 const initialState: IAuthState = {
@@ -11,7 +11,9 @@ const initialState: IAuthState = {
     loginError: '',
     registerError: '',
     user: null,
-    isSubscribing: false
+    isSubscribing: false,
+    updatePending: false,
+    updateSuccess: false
 }
 
 
@@ -81,6 +83,20 @@ const authSlice = createSlice({
         },
         [toglgeSubscribeUser.rejected.type]: (state, action) => {
             state.isSubscribing = false
+        },
+
+
+        [updateUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
+            state.user = action.payload
+            state.updatePending = false
+            state.updateSuccess = true
+        },
+        [updateUser.pending.type]: (state, action) => {
+            state.updatePending = true
+        },
+        [updateUser.rejected.type]: (state, action) => {
+            state.updatePending = false
+            state.updateSuccess = false
         },
     }
 })

@@ -14,6 +14,7 @@ export const useSubscribe = (user: IUser) => {
 
 
     const onToggleSubscribe = () => {
+        if (!authUser) return;
         if (isSubscribed) {
             setSubsCount(prev => prev - 1)
         } else {

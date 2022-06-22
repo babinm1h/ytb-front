@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { IUser } from '../../../../types/models/user.types';
+import { AllRoutes } from '../../../AppRoutes/AppRoutes';
 
 interface IChannelButtonsProps {
     authUser: IUser | null
@@ -16,12 +18,12 @@ const ChannelButtons: FC<IChannelButtonsProps> = ({ authUser, userId, onToggleSu
         <>
             {authUser && authUser._id === userId
                 ? <div className='flex items-center gap-5'>
-                    <button className="subBtn bg-primaryBlue text-white">
+                    <NavLink to={AllRoutes.studio + "/customisation"} className="subBtn bg-primaryBlue text-white">
                         customise channel
-                    </button>
-                    <button className="subBtn bg-primaryBlue text-white">
+                    </NavLink>
+                    <NavLink to={AllRoutes.studio + "/content"} className="subBtn bg-primaryBlue text-white">
                         manage videos
-                    </button>
+                    </NavLink>
                 </div>
                 : isSubscribed
                     ? <button className="subBtn bg-lightGray text-gray-500" onClick={onToggleSubscribe}

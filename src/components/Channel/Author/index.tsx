@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { SERVER_URL } from '../../../API';
 import { useSubscribe } from '../../../hooks/useSubscribe';
 import { IUser } from '../../../types/models/user.types';
 import { roundNumber } from '../../../utils/roundNumber';
@@ -15,13 +16,13 @@ const Author: FC<IAuthorProps> = ({ user }) => {
     return (
         <div className="mb-10">
             {user && user.banner && <div className="w-full h-[200px]">
-                <img src="https://i.ytimg.com/vi/Od5H_CiU2vM/maxresdefault.jpg" alt="wallpaper"
+                <img src={SERVER_URL + "/" + user.banner} alt="wallpaper"
                     className="object-cover w-full h-full" />
             </div>}
 
             <div className="flex items-center mt-5 gap-5">
                 <div className="w-20 h-20 rounded-[50%] flex-shrink-0">
-                    <img src={user?.avatar} alt={user?.name}
+                    <img src={SERVER_URL + "/" + user.avatar} alt={user?.name}
                         className="object-cover w-full h-full rounded-[50%]" />
                 </div>
                 <div className="flex-grow">

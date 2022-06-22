@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { SERVER_URL } from '../../../../API';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { commentVideo } from '../../../../redux/thunks/videoPage.thunks';
@@ -30,7 +31,8 @@ const CommentsForm: FC<ICommentsFormProps> = ({ user, videoId }) => {
             <form action="" className="flex flex-col gap-5 my-7 flex-grow" onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex items-center gap-5">
                     <div className="flex-shrink-0 w-10 h-10">
-                        <img src={user.avatar} alt="" className="rounded-[50%] w-full h-full" />
+                        <img src={SERVER_URL + "/" + user.avatar} alt="avatar"
+                            className="rounded-[50%] w-full h-full object-cover" />
                     </div>
                     <input type="text" className="w-full border-b-2 border-gray-400 py-1 focus:border-black"
                         placeholder='Add a comment...' {...register("text", validate(1, 350))} />

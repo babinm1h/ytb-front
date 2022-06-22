@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 export interface IUseUploadImageReturn {
@@ -28,5 +28,6 @@ export const useUploadImage = (): IUseUploadImageReturn => {
         setPreview(null)
     }
 
+    
     return { resetFiles, handleImg, preview, img }
 }

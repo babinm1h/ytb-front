@@ -6,8 +6,10 @@ export interface IAuthState {
     loginError: string
     registerError: string
     isInitializing: boolean
-    isProccessing: boolean,
+    isProccessing: boolean
     isSubscribing: boolean
+    updatePending: boolean
+    updateSuccess: boolean
 }
 
 
@@ -17,4 +19,5 @@ export enum AuthActionTypes {
     getAuth = 'auth/getAuth',
     subscribe = 'auth/subscribe',
     unsubscribe = 'auth/unsubscribe',
+    update_user = 'auth/update_user',
 }

@@ -18,7 +18,9 @@ const studioSlice = createSlice({
     initialState,
     name: "studio",
     reducers: {
-
+        resetChoosenVideo(state) {
+            state.choosenVideo = null
+        }
     },
     extraReducers: {
         [fetchStudioVideos.fulfilled.type]: (state, action: PayloadAction<IVideo[]>) => {
@@ -62,3 +64,4 @@ const studioSlice = createSlice({
 
 
 export default studioSlice.reducer;
+export const { resetChoosenVideo } = studioSlice.actions;

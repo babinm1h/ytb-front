@@ -17,7 +17,9 @@ const Subscriptions = () => {
         <MainLayout>
             <div className="p-5">
                 <h1 className="sectionTitle">Your subscriptions</h1>
-                <VideosList videos={videos} isLoading={videosPending} />
+                {videos.length > 0
+                    ? <VideosList videos={videos} isLoading={videosPending} />
+                    : <h2 className='text-myGray text-center font-medium text-lg'>No subscriptions</h2>}
             </div>
         </MainLayout>
     );

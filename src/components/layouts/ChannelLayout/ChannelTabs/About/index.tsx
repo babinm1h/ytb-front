@@ -23,6 +23,10 @@ const ChannelAbout: FC<IChannelAboutProps> = ({ owner }) => {
                             {owner.email}
                         </a>
                     </div>
+                    {owner.country && <div className="flex items-center gap-3 mt-2">
+                        <span className="text-myGray">Location:</span>
+                        <span>{owner.country}</span>
+                    </div>}
                 </div>
             </div>
 

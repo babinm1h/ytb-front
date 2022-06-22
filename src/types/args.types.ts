@@ -12,12 +12,3 @@ export interface ILoginArgs {
     password: string
 }
 
-
-export interface IUpdateUserArgs {
-    name?: string
-    description?: string
-    country?: string
-    avatar?: string
-    banner?: string
-}
-

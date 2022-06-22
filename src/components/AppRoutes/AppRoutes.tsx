@@ -5,7 +5,6 @@ import Channel from '../../pages/Channel';
 import Home from '../../pages/Home';
 import Login from '../../pages/Login';
 import Register from '../../pages/Register';
-import Studio from '../../pages/Studio';
 import StudioCustomisation from '../../pages/Studio/Customisation';
 import EditVideo from '../../pages/Studio/EditVideo';
 import StudioContent from '../../pages/Studio/StudioContent';
@@ -31,6 +30,9 @@ const AppRoutes = () => {
         { path: AllRoutes.login, elem: <Login /> },
         { path: AllRoutes.register, elem: <Register /> },
         { path: AllRoutes.video + "/:id", elem: <VideoPage /> },
+    ]
+
+    const privateRoutes = [
         { path: AllRoutes.subscriptions, elem: <Subscriptions /> },
         { path: AllRoutes.studio + "/content", elem: <StudioContent /> },
         { path: AllRoutes.studio + "/customisation", elem: <StudioCustomisation /> },
@@ -45,7 +47,7 @@ const AppRoutes = () => {
                 <Route path={'videos'} element={<Channel />} />
                 <Route path={'about'} element={<Channel />} />
             </Route>
-
+            {user && privateRoutes.map(r => <Route key={r.path} element={r.elem} path={r.path} />)}
         </Routes>
     );
 };

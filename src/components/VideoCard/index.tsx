@@ -29,7 +29,7 @@ const VideoCard: FC<IVideoCardProps> = ({ video }) => {
                 <div className="w-10 h-10 border rounded-[50%] flex-shrink-0"
                     onClick={(e) => e.stopPropagation()}>
                     <NavLink to={AllRoutes.channel + `/${video.user._id}/home`}>
-                        <img src={video.user.avatar} alt="author"
+                        <img src={SERVER_URL + "/" + video.user.avatar} alt="author"
                             className="rounded-[50%] w-full h-full object-cover" />
                     </NavLink>
                 </div>
