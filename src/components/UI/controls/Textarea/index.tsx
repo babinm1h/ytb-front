@@ -9,9 +9,10 @@ interface ITextareaProps {
     register: UseFormRegisterReturn
     error: FieldError | undefined
     rows: number
+    defaultValue?: string
 }
 
-const Textarea: FC<ITextareaProps> = ({ error, id, label, register, rows }) => {
+const Textarea: FC<ITextareaProps> = ({ error, id, label, register, rows, defaultValue }) => {
     return (
         <div className={cn(s.wrapper, {
             "border-red-500": error,
@@ -23,7 +24,9 @@ const Textarea: FC<ITextareaProps> = ({ error, id, label, register, rows }) => {
             })}>
                 {label} (required)
             </label>
-            <textarea id={id} className='resize-none py-1' {...register} rows={rows}></textarea>
+            <textarea id={id} className='resize-none py-1' {...register} rows={rows}
+                defaultValue={defaultValue}>
+            </textarea>
         </div>
     );
 };

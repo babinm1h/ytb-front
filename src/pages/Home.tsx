@@ -9,7 +9,7 @@ import ChannelsList from '../components/ChannelsList';
 
 const Home = () => {
     const dispatch = useAppDispatch()
-    const { isLoading, videos, popularVideos, popularUsers } = useAppSelector(state => state.videos)
+    const { isLoading, videos, popularVideos, popularUsers, isUsersLoading } = useAppSelector(state => state.videos)
 
     useEffect(() => {
         dispatch(fetchAllVideos())
@@ -22,7 +22,7 @@ const Home = () => {
             <MainLayout>
                 <section className="p-5 border-b border-gray-300">
                     <h2 className="sectionTitle">Popular Channels</h2>
-                    {popularUsers.length > 0 && <ChannelsList users={popularUsers} />}
+                    {popularUsers.length > 0 && <ChannelsList users={popularUsers} isLoading={isUsersLoading} />}
                 </section>
 
                 <section className="hidden sm:block p-5 border-b border-gray-300">

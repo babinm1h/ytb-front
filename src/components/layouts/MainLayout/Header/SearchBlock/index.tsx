@@ -36,7 +36,7 @@ const SearchBlock = () => {
                 <button type="submit" className='border border-gray-300 h-full bg-white border-l-0 px-4 hover:bg-gray-200 transition-colors'>
                     <SearchIcon className='w-5 h-5' />
                 </button>
-                {isVisible && <SearchPopup videos={searchedVideos} isSearching={isSearching} />}
+                {isVisible && searchTerm.length > 0 && <SearchPopup videos={searchedVideos} isSearching={isSearching} />}
             </form>
         </div>
     );

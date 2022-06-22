@@ -127,6 +127,9 @@ body{
         @apply scrollbar-thin scrollbar-thumb-myGray
     }
 
+    .videoStat{
+        @apply max-w-[100px] w-full
+    }
 
     .channelItem{
         @apply py-2 px-3 hover:bg-lightGray self-start flex items-center justify-center; 

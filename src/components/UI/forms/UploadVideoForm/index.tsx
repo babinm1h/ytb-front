@@ -8,6 +8,7 @@ import { createVideo } from '../../../../redux/thunks/videos.thunks';
 import { validate } from '../../../../utils/validate';
 import Textarea from '../../controls/Textarea';
 import Toggle from '../../controls/Toggle';
+import PreviewBlock from './PrewiewBlock';
 import UploadPreview from './UploadPreview';
 import VideoUploadStage from './VideoUploadStage';
 
@@ -88,24 +89,11 @@ const UploadVideoForm: FC<IUploadVideoFormProps> = ({ isOpen, onClose }) => {
                                 <Toggle enabled={enabled} setEnabled={setEnabled} title="Make video public?" />
                             </div>
 
-                            <div className="mb-2 font-medium mt-5">Thumbnail</div>
+
                             <UploadPreview handleImg={handleImg} />
                         </div>
 
-                        <div className="flex-1 flex flex-col">
-                            {preview
-                                ? <div className="w-[304px] h-[170px]">
-                                    <img src={preview} alt="preview" className="w-full h-full shrink-0" />
-                                </div>
-                                : <div className="bg-lightGray w-[304px] h-[170px] flex items-center justify-center">
-                                    Upload thumbnail...
-                                </div>}
-
-                            <div className="text-myGray text-[12px] mt-2">Filename:</div>
-                            <p className="line-clamp-1">
-                                {videoFile.name}
-                            </p>
-                        </div>
+                        <PreviewBlock filename={videoFile.name} preview={preview} />
                     </div>
                     <div className="flex items-center px-5 py-3 border-t border-gray-300 gap-2">
                         <UploadIcon className='text-primaryBlue w-6 h-6 animate-pulse' />

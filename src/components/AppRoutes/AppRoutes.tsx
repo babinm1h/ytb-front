@@ -5,6 +5,11 @@ import Channel from '../../pages/Channel';
 import Home from '../../pages/Home';
 import Login from '../../pages/Login';
 import Register from '../../pages/Register';
+import Studio from '../../pages/Studio';
+import StudioCustomisation from '../../pages/Studio/Customisation';
+import EditVideo from '../../pages/Studio/EditVideo';
+import StudioContent from '../../pages/Studio/StudioContent';
+import Subscriptions from '../../pages/Subscriptions';
 import VideoPage from '../../pages/VideoPage';
 
 export enum AllRoutes {
@@ -13,7 +18,9 @@ export enum AllRoutes {
     register = '/register',
     video = '/video',
     channel = '/channel',
-    search = '/search'
+    search = '/search',
+    subscriptions = '/subscriptions',
+    studio = '/studio'
 }
 
 const AppRoutes = () => {
@@ -24,6 +31,10 @@ const AppRoutes = () => {
         { path: AllRoutes.login, elem: <Login /> },
         { path: AllRoutes.register, elem: <Register /> },
         { path: AllRoutes.video + "/:id", elem: <VideoPage /> },
+        { path: AllRoutes.subscriptions, elem: <Subscriptions /> },
+        { path: AllRoutes.studio + "/content", elem: <StudioContent /> },
+        { path: AllRoutes.studio + "/customisation", elem: <StudioCustomisation /> },
+        { path: AllRoutes.studio + "/:id", elem: <EditVideo /> },
     ]
 
     return (

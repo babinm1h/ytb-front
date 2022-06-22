@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { CircleUser, LogoutIcon, SettingsIcon, UserIcon, VideoPlus } from '../../../../../assets/icons';
+import { CircleUser, LogoutIcon, SettingsIcon, UserIcon } from '../../../../../assets/icons';
 import { useAppDispatch } from '../../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../../hooks/useAppSelector';
 import { useOutsideClick } from '../../../../../hooks/useOutsideClick';
@@ -42,7 +42,7 @@ const ActionsBlock = () => {
                                 <UserIcon className='w-6 h-6' />
                                 Your Channel
                             </NavLink>
-                            <NavLink to={AllRoutes.channel + `/${user._id}/home`} className="popupLi">
+                            <NavLink to={AllRoutes.studio + "/content"} className="popupLi">
                                 <SettingsIcon className='w-6 h-6' />
                                 YouTube Studio
                             </NavLink>

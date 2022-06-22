@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { HomeIcon, VideosIcon, CollectionVideos } from '../../../../assets/icons';
+import { HomeIcon, CollectionVideos, SettingsIcon, UserIcon } from '../../../../assets/icons';
 import { AllRoutes } from '../../../AppRoutes/AppRoutes';
 
 const Sidebar = () => {
@@ -13,14 +13,19 @@ const Sidebar = () => {
                     Home
                 </NavLink>
 
-                <NavLink to={AllRoutes.home} className="navItem">
+                <NavLink to={AllRoutes.subscriptions} className="navItem">
                     <CollectionVideos className='w-7 h-7' />
                     Subscriptions
                 </NavLink>
 
-                <NavLink to={AllRoutes.home} className="navItem">
-                    <VideosIcon className='w-7 h-7' />
-                    Your videos
+                <NavLink to={AllRoutes.studio + '/content'} className="navItem">
+                    <SettingsIcon className='w-7 h-7' />
+                    Your Studio
+                </NavLink>
+
+                <NavLink to={AllRoutes.studio + '/channel'} className="navItem">
+                    <UserIcon className='w-7 h-7' />
+                    Edit Channel
                 </NavLink>
             </nav>
         </div>
