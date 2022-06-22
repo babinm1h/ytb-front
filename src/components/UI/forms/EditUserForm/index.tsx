@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { useUploadImage } from '../../../../hooks/useUploadFile';
@@ -10,6 +10,8 @@ import CustomSelect from '../../controls/CustomSelect';
 import Textarea from '../../controls/Textarea';
 import { updateUser } from '../../../../redux/thunks/auth.thunks';
 import { validate } from '../../../../utils/validate';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 interface IForm {
@@ -20,11 +22,11 @@ interface IForm {
 
 const EditUserForm = () => {
     const dispatch = useAppDispatch()
-    const { user } = useAppSelector(state => state.auth)
+    const { user, updatePending, updateSuccess } = useAppSelector(state => state.auth)
 
     const options = useMemo(() => countryList().getData(), [])
-    const { handleImg, img, preview, resetFiles } = useUploadImage()
-    const { handleImg: handleBanner, img: banner, preview: bannerPreview, resetFiles: resetBannerFiles } = useUploadImage()
+    const { handleImg, img, preview } = useUploadImage()
+    const { handleImg: handleBanner, img: banner, preview: bannerPreview } = useUploadImage()
 
     const onCountryChange = (option: any) => {
         setValue('country', option)
@@ -42,6 +44,20 @@ const EditUserForm = () => {
         dispatch(updateUser(fd))
     }
 
+    useEffect(() => {
+        if (updateSuccess) {
+            toast.success('Channel updated successfully', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        } else return;
+    }, [updateSuccess])
+
     if (!user) {
         return <div>load</div>
     }
@@ -53,17 +69,29 @@ const EditUserForm = () => {
                 <UploadBanner preview={bannerPreview} handleImg={handleBanner} user={user} />
                 <div className="">
                     <div className="text-[16px] font-medium mb-2">Select your country</div>
-                    <CustomSelect options={options} placeholder='Choose country...' className='w-[250px]'
-                        value={user.country as any} onChange={onCountryChange} />
+                    <CustomSelect options={options} placeholder='Choose country...' className='w-[250px]' onChange={onCountryChange} />
                 </div>
                 <Textarea register={register('description')} error={errors.description}
                     id='description' label='Channel description' rows={3} defaultValue={user.description} />
                 <Textarea register={register('name', validate(1, 45))} error={errors.name}
                     id='name' label='Channel name' rows={2} defaultValue={user.name} />
-                <button type="submit" className='subBtn bg-primaryBlue text-white self-start'>
+                <button type="submit" className='subBtn bg-primaryBlue text-white self-start'
+                    disabled={updatePending}>
                     save changes
                 </button>
             </form>
+            <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme='colored'
+            />
         </>
     );
 };

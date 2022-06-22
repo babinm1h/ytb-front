@@ -1,11 +1,16 @@
 import { $authInstance, $instance } from ".";
 import { IVideo } from "../types/models/video.types";
 
+export interface IFetchAllVideosResponse {
+    totalCount: number
+    videos: IVideo[]
+}
+
 
 export class VideosService {
 
-    static async fetchAll(): Promise<IVideo[]> {
-        const { data } = await $instance.get("/videos")
+    static async fetchAll(page: number): Promise<IVideo[]> {
+        const { data } = await $instance.get("/videos", { params: { page } })
         return data
     }
 

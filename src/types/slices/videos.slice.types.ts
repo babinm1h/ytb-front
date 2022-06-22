@@ -12,6 +12,9 @@ export interface IVideosState {
 
     createPending: boolean
     createSuccess: boolean
+
+    currentPage: number
+    totalCount: number
 }
 
 

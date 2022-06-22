@@ -5,9 +5,9 @@ import { VideosActionTypes } from "../../types/slices/videos.slice.types";
 
 
 export const fetchAllVideos = createAsyncThunk(VideosActionTypes.fetch_all,
-    async (_, thunk) => {
+    async (page: number, thunk) => {
         try {
-            const data = await VideosService.fetchAll()
+            const data = await VideosService.fetchAll(page)
             return data
         } catch (err) {
             return thunk.rejectWithValue(err)

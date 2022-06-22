@@ -43,7 +43,7 @@ const EditVideoForm = () => {
     }, [])
 
     useEffect(() => {
-        if (updateVideoSuccess) toast.success('Video updated successfuly', {
+        if (updateVideoSuccess) toast.success('Video updated successfully', {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: true,

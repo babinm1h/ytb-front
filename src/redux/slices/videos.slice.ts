@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IFetchAllVideosResponse } from "../../API/videos.service";
 import { IUser } from "../../types/models/user.types";
 import { IVideo } from "../../types/models/video.types";
 import { IVideosState } from "../../types/slices/videos.slice.types";
@@ -14,18 +15,25 @@ const initialState: IVideosState = {
     isSearching: false,
     searchedVideos: [],
     createPending: false,
-    createSuccess: false
+    createSuccess: false,
+    currentPage: 1,
+    totalCount: 0
 }
 
 
 const videosSlice = createSlice({
     name: "videos",
     initialState,
-    reducers: {},
+    reducers: {
+        incrCurrentPage(state) {
+            state.currentPage += 1
+        }
+    },
     extraReducers: {
-        [fetchAllVideos.fulfilled.type]: (state, action: PayloadAction<IVideo[]>) => {
+        [fetchAllVideos.fulfilled.type]: (state, action: PayloadAction<IFetchAllVideosResponse>) => {
             state.isLoading = false
-            state.videos = action.payload
+            state.videos = [...state.videos, ...action.payload.videos]
+            state.totalCount = action.payload.totalCount
         },
         [fetchAllVideos.pending.type]: (state, action) => {
             state.isLoading = true
@@ -86,3 +94,4 @@ const videosSlice = createSlice({
 
 
 export default videosSlice.reducer;
+export const { incrCurrentPage } = videosSlice.actions;

@@ -12,7 +12,7 @@ import Subscriptions from '../../pages/Subscriptions';
 import VideoPage from '../../pages/VideoPage';
 
 export enum AllRoutes {
-    home = '/*',
+    home = '/',
     login = '/login',
     register = '/register',
     video = '/video',

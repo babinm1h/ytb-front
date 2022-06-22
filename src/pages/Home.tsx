@@ -1,21 +1,25 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Slider from '../components/Slider';
 import MainLayout from '../components/layouts/MainLayout';
 import VideosList from '../components/VideosList';
-import { fetchAllVideos, fetchPopularUsers, fetchPopularVideos } from '../redux/thunks/videos.thunks';
+import { fetchPopularUsers, fetchPopularVideos } from '../redux/thunks/videos.thunks';
 import { useAppSelector } from '../hooks/useAppSelector';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import ChannelsList from '../components/ChannelsList';
+import { useScrollPagination } from '../hooks/useScrollPagination';
+import VideoSkeletonList from '../components/Loaders/VideoSkeletonList';
 
 const Home = () => {
     const dispatch = useAppDispatch()
-    const { isLoading, videos, popularVideos, popularUsers, isUsersLoading } = useAppSelector(state => state.videos)
+    const { isLoading, videos, popularVideos, popularUsers, isUsersLoading, currentPage, totalCount } = useAppSelector(state => state.videos)
+
 
     useEffect(() => {
-        dispatch(fetchAllVideos())
         dispatch(fetchPopularVideos())
         dispatch(fetchPopularUsers())
-    }, [])
+    }, [dispatch])
+
+    const scrollPagination = useScrollPagination(videos.length, currentPage, totalCount)
 
     return (
         <>
@@ -30,9 +34,10 @@ const Home = () => {
                     <Slider videos={popularVideos} />
                 </section>
 
-                <section className="p-5">
+                <section className="p-5" >
                     <h2 className="sectionTitle">Recommended</h2>
-                    <VideosList videos={videos} isLoading={isLoading} />
+                    <VideosList videos={videos} />
+                    {isLoading && <VideoSkeletonList />}
                 </section>
 
             </MainLayout>
