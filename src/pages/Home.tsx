@@ -33,22 +33,24 @@ const Home = () => {
     return (
         <>
             <MainLayout>
-                <section className="p-5 border-b border-gray-300">
-                    <h2 className="sectionTitle">Popular Channels</h2>
-                    {popularUsers.length > 0 && <ChannelsList users={popularUsers} isLoading={isUsersLoading} />}
-                </section>
+                <div className="w-full h-full overflow-auto" ref={parentRef}>
+                    <section className="p-5 border-b border-gray-300">
+                        <h2 className="sectionTitle">Popular Channels</h2>
+                        {popularUsers.length > 0 && <ChannelsList users={popularUsers} isLoading={isUsersLoading} />}
+                    </section>
 
-                <section className="hidden sm:block p-5 border-b border-gray-300">
-                    <h2 className="sectionTitle">Popular Videos</h2>
-                    <Slider videos={popularVideos} />
-                </section>
+                    <section className="hidden sm:block p-5 border-b border-gray-300">
+                        <h2 className="sectionTitle">Popular Videos</h2>
+                        <Slider videos={popularVideos} />
+                    </section>
 
-                <section className="p-5 overflow-auto" ref={parentRef}>
-                    <h2 className="sectionTitle">Recommended</h2>
-                    <VideosList videos={videos} />
-                    {isLoading && <VideoSkeletonList />}
+                    <section className="p-5">
+                        <h2 className="sectionTitle">Recommended</h2>
+                        <VideosList videos={videos} />
+                        {isLoading && <VideoSkeletonList />}
+                    </section>
                     <div ref={childRef}></div>
-                </section>
+                </div>
 
             </MainLayout>
         </>
