@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import Slider from '../components/Slider';
 import MainLayout from '../components/layouts/MainLayout';
 import VideosList from '../components/VideosList';
@@ -8,11 +8,15 @@ import { useAppDispatch } from '../hooks/useAppDispatch';
 import ChannelsList from '../components/ChannelsList';
 import { useScrollPagination } from '../hooks/useScrollPagination';
 import VideoSkeletonList from '../components/Loaders/VideoSkeletonList';
+import useScroll from '../hooks/useScroll';
+import { incrCurrentPage } from '../redux/slices/videos.slice';
 
 const Home = () => {
+    const parentRef = useRef(null)
+    const childRef = useRef(null)
+
     const dispatch = useAppDispatch()
     const { isLoading, videos, popularVideos, popularUsers, isUsersLoading, currentPage, totalCount } = useAppSelector(state => state.videos)
-    const { updateVideoSuccess } = useAppSelector(state => state.studio)
 
 
     useEffect(() => {
@@ -20,11 +24,13 @@ const Home = () => {
         dispatch(fetchPopularUsers())
     }, [dispatch])
 
-    useEffect(() => {
-        if (updateVideoSuccess) dispatch(fetchAllVideos(1))
-    }, [updateVideoSuccess])
+    const cb = () => {
+        dispatch(fetchAllVideos(currentPage)).then(() => dispatch(incrCurrentPage()))
+    }
 
-    const scrollPagination = useScrollPagination(videos.length, currentPage, totalCount)
+    // const scrollPagination = useScrollPagination(videos.length, currentPage, totalCount)
+
+    const scr = useScroll(parentRef, childRef, cb)
 
     return (
         <>
@@ -39,10 +45,11 @@ const Home = () => {
                     <Slider videos={popularVideos} />
                 </section>
 
-                <section className="p-5" >
+                <section className="p-5" ref={parentRef}>
                     <h2 className="sectionTitle">Recommended</h2>
                     <VideosList videos={videos} />
                     {isLoading && <VideoSkeletonList />}
+                    <div ref={childRef}></div>
                 </section>
 
             </MainLayout>
