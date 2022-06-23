@@ -20,6 +20,9 @@ const Home = () => {
         dispatch(fetchPopularUsers())
     }, [dispatch])
 
+    useEffect(() => {
+        if (updateVideoSuccess) dispatch(fetchAllVideos(1))
+    }, [updateVideoSuccess])
 
     const scrollPagination = useScrollPagination(videos.length, currentPage, totalCount)
 

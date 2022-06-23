@@ -21,6 +21,9 @@ const studioSlice = createSlice({
     reducers: {
         resetChoosenVideo(state) {
             state.choosenVideo = null
+        },
+        setUpdateVideoSuccess(state, action: PayloadAction<boolean>) {
+            state.updateVideoSuccess = action.payload
         }
     },
     extraReducers: {
@@ -77,4 +80,4 @@ const studioSlice = createSlice({
 
 
 export default studioSlice.reducer;
-export const { resetChoosenVideo } = studioSlice.actions;
+export const { resetChoosenVideo, setUpdateVideoSuccess } = studioSlice.actions;

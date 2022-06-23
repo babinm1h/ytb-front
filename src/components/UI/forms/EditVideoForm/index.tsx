@@ -13,6 +13,7 @@ import UploadPreview from '../UploadVideoForm/UploadPreview';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Spinner from '../../../Loaders/Spinner';
+import { setUpdateVideoSuccess } from '../../../../redux/slices/studio.slice';
 
 interface IForm {
     title: string
@@ -44,15 +45,18 @@ const EditVideoForm = () => {
     }, [])
 
     useEffect(() => {
-        if (updateVideoSuccess) toast.success('Video updated successfully', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+        if (updateVideoSuccess) {
+            toast.success('Video updated successfully', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            dispatch(setUpdateVideoSuccess(false))
+        }
     }, [updateVideoSuccess])
 
     if (choosenVideoPending || !choosenVideo) {
