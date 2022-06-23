@@ -1,5 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import { IVideo } from '../../../../../../types/models/video.types';
+import Spinner from '../../../../../Loaders/Spinner';
 import SearchedVideo from '../SearchedVideo';
 
 interface ISearchPopupProps {
@@ -12,7 +13,7 @@ const SearchPopup: FC<PropsWithChildren<ISearchPopupProps>> = ({ videos, isSearc
         <div className="bg-white shadow-popup absolute top-11 right-0 left-0 max-h-[400px] overflow-hidden overflow-y-scroll myScroll border-gray-200">
             <ul className="flex flex-col w-full">
                 {isSearching
-                    ? <div>load</div>
+                    ? <div className="text-center"><Spinner /></div>
                     : videos.length > 0
                         ? videos.map(v => <SearchedVideo key={v._id} video={v} />)
                         : <h4 className='text-gray-500 font-medium text-lg text-center py-5'>

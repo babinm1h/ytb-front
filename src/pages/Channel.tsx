@@ -4,6 +4,7 @@ import ChannelLayout from '../components/layouts/ChannelLayout';
 import ChannelAbout from '../components/layouts/ChannelLayout/ChannelTabs/About';
 import ChannelHome from '../components/layouts/ChannelLayout/ChannelTabs/Home';
 import ChannelVideos from '../components/layouts/ChannelLayout/ChannelTabs/Videos';
+import Spinner from '../components/Loaders/Spinner';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import { useAppSelector } from '../hooks/useAppSelector';
 import { resetChannelPage } from '../redux/slices/channelPage.slice';
@@ -43,20 +44,21 @@ const Channel = () => {
         if (path === ChannelTabs.home) setActiveTab(ChannelTabs.home)
     }, [pathname])
 
-    if (!user || isLoading) return <div>load</div>
 
     return (
-        <ChannelLayout user={user}>
-            {activeTab === ChannelTabs.home
-                ? popularVideos.length > 0
-                    ? <ChannelHome popularVideos={popularVideos} />
-                    : <h3 className='text-gray-500 text-xl text-center py-5'>
-                        This channel doesn't have any content
-                    </h3>
-
-                : activeTab === ChannelTabs.videos
-                    ? <ChannelVideos />
-                    : <ChannelAbout owner={user} />}
+        <ChannelLayout user={user} isLoading={isLoading}>
+            {!user
+                ? <div className="text-center"><Spinner /></div>
+                : activeTab === ChannelTabs.home
+                    ? popularVideos.length > 0
+                        ? <ChannelHome popularVideos={popularVideos} />
+                        : <h3 className='text-gray-500 text-xl text-center py-5'>
+                            This channel doesn't have any content
+                        </h3>
+                    : activeTab === ChannelTabs.videos
+                        ? <ChannelVideos />
+                        : <ChannelAbout owner={user} />
+            }
         </ChannelLayout>
     );
 };

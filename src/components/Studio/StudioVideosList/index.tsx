@@ -1,12 +1,13 @@
 import React from 'react';
 import { useAppSelector } from '../../../hooks/useAppSelector';
+import Spinner from '../../Loaders/Spinner';
 import StudioVideo from './StudioVideo';
 
 const StudioVideosList = () => {
     const { videos, videosPending } = useAppSelector(state => state.studio)
 
     if (videosPending) {
-        return <div className="">load</div>
+        return <div className="text-center"><Spinner /></div>
     }
 
     return (

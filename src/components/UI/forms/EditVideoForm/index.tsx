@@ -12,6 +12,7 @@ import PreviewBlock from '../UploadVideoForm/PrewiewBlock';
 import UploadPreview from '../UploadVideoForm/UploadPreview';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Spinner from '../../../Loaders/Spinner';
 
 interface IForm {
     title: string
@@ -55,7 +56,7 @@ const EditVideoForm = () => {
     }, [updateVideoSuccess])
 
     if (choosenVideoPending || !choosenVideo) {
-        return <div className="">load</div>
+        return <div className="text-center"><Spinner /></div>
     }
 
     return (

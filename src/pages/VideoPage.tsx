@@ -10,6 +10,7 @@ import { fetchSingleVideo, fetchVideoComments } from '../redux/thunks/videoPage.
 import ReactPlayer from "react-player"
 import { SERVER_URL } from '../API';
 import CommentsList from '../components/VideoPage/CommentsList';
+import Spinner from '../components/Loaders/Spinner';
 
 
 const VideoPage = () => {
@@ -31,7 +32,7 @@ const VideoPage = () => {
         <MainLayout>
             <div className="p-5">
                 {!video || isVideoLoading
-                    ? <div>loader</div>
+                    ? <div className="text-center"><Spinner /></div>
                     : <>
                         <div className="w-full h-auto border border-gray-400 bg-black">
                             <ReactPlayer url={SERVER_URL + "/" + video.video} controls={true}

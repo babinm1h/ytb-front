@@ -12,6 +12,7 @@ import { updateUser } from '../../../../redux/thunks/auth.thunks';
 import { validate } from '../../../../utils/validate';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Spinner from '../../../Loaders/Spinner';
 
 
 interface IForm {
@@ -59,7 +60,7 @@ const EditUserForm = () => {
     }, [updateSuccess])
 
     if (!user) {
-        return <div>load</div>
+        return <div className="text-center"><Spinner /></div>
     }
 
     return (
