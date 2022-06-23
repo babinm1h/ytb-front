@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+# [Видео с демонстрацией](https://www.youtube.com/watch?v=_DQr9xLdmo0)
+Основной функционал:
+- Регистрация и авторизация jwt + cookie 
+- Добавление видео 
+- Редактирование видео
+- Удаление видео
+- Комментарии + удаление 
+- Лайки + дизлайки
+- Редактирование канала (имя, страна, загрузка нового аватара и баннера канала и т.д)
+- Подписки и т.д
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
