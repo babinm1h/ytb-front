@@ -70,4 +70,10 @@ export class VideosService {
         const { data } = await $authInstance.put(`videos/update/${videoId}`, formData)
         return data
     }
+
+    static async delete(videoId: string): Promise<IVideo> {
+        const { data } = await $authInstance.delete(`videos/${videoId}`,)
+        return data
+    }
+
 }

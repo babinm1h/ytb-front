@@ -13,7 +13,7 @@ const UploadModal = () => {
             </button>
 
             {isOpen && <div className="bg-black bg-opacity-50 inset-0 fixed z-[5] w-full h-full items-center justify-center flex">
-                <div className="rounded-lg bg-white w-full max-w-[850px] h-full max-h-[600px]">
+                <div className="md:rounded-lg bg-white w-full lg:max-w-[850px] h-full lg:max-h-[600px]">
                     <UploadVideoForm isOpen={isOpen} onClose={onClose} />
                 </div>
             </div>}

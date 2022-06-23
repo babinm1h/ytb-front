@@ -15,7 +15,7 @@ const StudioContent = () => {
         <>
             <MainLayout>
                 <ul className="flex items-center gap-5 px-5 py-3 text-myGray font-medium">
-                    <li className="max-w-[400px] w-full">Video</li>
+                    <li className="max-w-[350px] w-full min-w-[120px]">Video</li>
                     <li className="videoStat">Visibility</li>
                     <li className="videoStat">Date</li>
                     <li className="videoStat">Views</li>

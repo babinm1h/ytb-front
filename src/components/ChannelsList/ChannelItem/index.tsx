@@ -14,7 +14,7 @@ const ChannelItem: FC<IChannelItemProps> = ({ user }) => {
     return (
         <NavLink to={AllRoutes.channel + `/${user._id}/home`} className='channelItem'>
             <div className='flex flex-col items-center justify-center cursor-pointer flex-shrink-0'>
-                <div className="flex-shrink-0 md:w-12 md:h-12 mb-2 w-8 h-8">
+                <div className="flex-shrink-0 md:w-12 md:h-12 mb-2 w-14 h-14">
                     <img src={SERVER_URL + '/' + user.avatar} alt={user.name}
                         className="w-full h-full rounded-[50%] object-cover" />
                 </div>

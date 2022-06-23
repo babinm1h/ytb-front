@@ -17,7 +17,7 @@ const ChannelButtons: FC<IChannelButtonsProps> = ({ authUser, userId, onToggleSu
     return (
         <>
             {authUser && authUser._id === userId
-                ? <div className='flex items-center gap-5'>
+                ? <div className='flex items-center gap-5 flex-col md:flex-row'>
                     <NavLink to={AllRoutes.studio + "/customisation"} className="subBtn bg-primaryBlue text-white">
                         customise channel
                     </NavLink>

@@ -16,7 +16,7 @@ const UploadBanner: FC<IUploadBannerProps> = ({ user, handleImg, preview }) => {
                 This image will appear across the top of your channel.
             </p>
             <div className="flex items-center gap-10 mt-5">
-                <div className="w-[200px] h-[110px] shrink-0 bg-lightGray">
+                <div className="sm:w-[200px] sm:h-[110px] w-[140px] h-[70px] shrink-0 bg-lightGray">
                     <img src={preview ? preview : user.banner ? SERVER_URL + "/" + user.banner : ""}
                         alt="banner"
                         className='w-full h-full' />

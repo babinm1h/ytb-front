@@ -13,7 +13,7 @@ export const useScrollPagination = (videosLength: number, currentPage: number, t
             dispatch(fetchAllVideos(currentPage))
                 .then(() => dispatch(incrCurrentPage())).finally(() => setDoRefetch(false))
         }
-    }, [doRefetch])
+    }, [doRefetch, dispatch])
 
 
     const handleScroll = (e: any) => {
@@ -24,7 +24,6 @@ export const useScrollPagination = (videosLength: number, currentPage: number, t
 
     useEffect(() => {
         if (videosLength + 1 < totalCount) document.addEventListener('scroll', handleScroll)
-        console.log(videosLength);
         return () => {
             document.removeEventListener('scroll', handleScroll)
         }

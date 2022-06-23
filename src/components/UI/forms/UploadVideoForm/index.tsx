@@ -4,6 +4,7 @@ import { CloseIcon, UploadIcon } from '../../../../assets/icons';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { useUploadImage } from '../../../../hooks/useUploadFile';
+import { setCreateSuccess } from '../../../../redux/slices/videos.slice';
 import { createVideo } from '../../../../redux/thunks/videos.thunks';
 import { validate } from '../../../../utils/validate';
 import Textarea from '../../controls/Textarea';
@@ -65,7 +66,10 @@ const UploadVideoForm: FC<IUploadVideoFormProps> = ({ isOpen, onClose }) => {
     }
 
     useEffect(() => {
-        if (createSuccess) onClose();
+        if (createSuccess) {
+            onClose()
+            dispatch(setCreateSuccess(false))
+        }
         return;
     }, [createSuccess])
 
@@ -79,7 +83,7 @@ const UploadVideoForm: FC<IUploadVideoFormProps> = ({ isOpen, onClose }) => {
                             <CloseIcon className='w-6 h-6 text-myGray' />
                         </button>
                     </div>
-                    <div className='flex gap-5 p-5 flex-grow overflow-x-hidden overflow-y-scroll myScroll'>
+                    <div className='flex gap-5 p-5 flex-grow overflow-x-hidden overflow-y-scroll myScroll flex-col md:flex-row'>
                         <div className="flex-[2] flex items-start flex-col">
                             <div className="w-full" onSubmit={handleSubmit(onSubmit)}>
                                 <Textarea register={register("title", validate(1, 100))} error={errors.title}
@@ -88,7 +92,6 @@ const UploadVideoForm: FC<IUploadVideoFormProps> = ({ isOpen, onClose }) => {
                                     id='description' label="Description" rows={7} />
                                 <Toggle enabled={enabled} setEnabled={setEnabled} title="Make video public?" />
                             </div>
-
 
                             <UploadPreview handleImg={handleImg} />
                         </div>

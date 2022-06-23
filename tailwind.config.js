@@ -26,7 +26,10 @@ module.exports = {
         'sidebar-sm': '80px',
       },
       screens: {
-        "xs": "480px"
+        "xs": "480px",
+        'mw1100': "1100px",
+        'mw1300': "1300px",
+        'mw900': "900px",
       },
       keyframes: {
         tab: {

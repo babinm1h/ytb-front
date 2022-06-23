@@ -8,11 +8,13 @@ export interface IStudioState {
     choosenVideoPending: boolean
     updateVideoPending: boolean
     updateVideoSuccess: boolean
+    deletePending: boolean
 }
 
 
 export enum StudioActionTypes {
     fetch_videos = 'studio/fetch_videos',
     fetch_choosen_video = 'studio/fetch_choosen_video',
-    update_video = 'studio/update_video'
+    update_video = 'studio/update_video',
+    delete_video = 'studio/delete_video',
 }

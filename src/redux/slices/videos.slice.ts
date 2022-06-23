@@ -3,6 +3,7 @@ import { IFetchAllVideosResponse } from "../../API/videos.service";
 import { IUser } from "../../types/models/user.types";
 import { IVideo } from "../../types/models/video.types";
 import { IVideosState } from "../../types/slices/videos.slice.types";
+import { deleteVideo } from "../thunks/studio.thunks";
 import { createVideo, fetchAllVideos, fetchPopularUsers, fetchPopularVideos, searchVideos } from "../thunks/videos.thunks";
 
 
@@ -27,7 +28,10 @@ const videosSlice = createSlice({
     reducers: {
         incrCurrentPage(state) {
             state.currentPage += 1
-        }
+        },
+        setCreateSuccess(state, action: PayloadAction<boolean>) {
+            state.createSuccess = action.payload
+        },
     },
     extraReducers: {
         [fetchAllVideos.fulfilled.type]: (state, action: PayloadAction<IFetchAllVideosResponse>) => {
@@ -89,9 +93,14 @@ const videosSlice = createSlice({
         [createVideo.rejected.type]: (state, action) => {
             state.createPending = false
         },
+
+
+        [deleteVideo.fulfilled.type]: (state, action: PayloadAction<IVideo>) => {
+            state.videos = state.videos.filter(v => v._id !== action.payload._id)
+        },
     }
 })
 
 
 export default videosSlice.reducer;
-export const { incrCurrentPage } = videosSlice.actions;
+export const { incrCurrentPage, setCreateSuccess } = videosSlice.actions;

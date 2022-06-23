@@ -61,8 +61,8 @@ const EditVideoForm = () => {
     return (
         <>
             <form action="" className="" onSubmit={handleSubmit(onSubmit)}>
-                <div className="flex gap-10">
-                    <div className="w-full flex-[2]">
+                <div className="flex gap-5 flex-col sm:flex-row sm:gap-10">
+                    <div className="w-full md:flex-[2] flex-[3]">
                         <Textarea error={errors.title} id='title' label='Title' rows={3}
                             register={register("title", validate(1, 100))}
                             defaultValue={choosenVideo?.title} />
@@ -78,13 +78,13 @@ const EditVideoForm = () => {
                         </div>
                     </div>
 
-                    <div className="">
-                        <PreviewBlock filename={choosenVideo?.title}
-                            preview={preview ? preview : `${SERVER_URL + "/" + choosenVideo.preview}`} />
-                    </div>
+
+                    <PreviewBlock filename={choosenVideo?.title}
+                        preview={preview ? preview : `${SERVER_URL + "/" + choosenVideo.preview}`} />
+
                 </div>
 
-                <div className="border-t border-gray-300 py-5 shrink-0">
+                <div className="border-t border-gray-300 py-5 shrink-0 sm:mt-0 mt-5">
                     <button className="subBtn text-white bg-primaryBlue" type='submit'
                         disabled={updateVideoPending}>
                         save

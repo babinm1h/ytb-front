@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { IVideo } from "../../types/models/video.types";
-import { IStudioState } from "../../types/slices/studio.slices";
-import { fetchChoosenVideo, fetchStudioVideos, updateVideo } from "../thunks/studio.thunks";
+import { IStudioState } from "../../types/slices/studio.slice";
+import { deleteVideo, fetchChoosenVideo, fetchStudioVideos, updateVideo } from "../thunks/studio.thunks";
 
 
 const initialState: IStudioState = {
@@ -10,7 +10,8 @@ const initialState: IStudioState = {
     choosenVideoPending: true,
     videosPending: true,
     updateVideoPending: false,
-    updateVideoSuccess: false
+    updateVideoSuccess: false,
+    deletePending: false
 }
 
 
@@ -58,6 +59,18 @@ const studioSlice = createSlice({
         [updateVideo.rejected.type]: (state, action) => {
             state.updateVideoPending = false
             state.updateVideoSuccess = false
+        },
+
+
+        [deleteVideo.fulfilled.type]: (state, action: PayloadAction<IVideo>) => {
+            state.videos = state.videos.filter(v => v._id !== action.payload._id)
+            state.deletePending = false
+        },
+        [deleteVideo.pending.type]: (state, action) => {
+            state.deletePending = true
+        },
+        [deleteVideo.rejected.type]: (state, action) => {
+            state.deletePending = false
         },
     }
 })

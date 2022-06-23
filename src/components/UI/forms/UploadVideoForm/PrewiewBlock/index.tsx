@@ -9,10 +9,10 @@ const PreviewBlock: FC<IPrewiewBlockProps> = ({ filename, preview }) => {
     return (
         <div className="flex-1 flex flex-col">
             {preview
-                ? <div className="w-[304px] h-[170px]">
+                ? <div className="w-[180px] h-[100px] md:w-[304px] md:h-[170px]">
                     <img src={preview} alt="preview" className="w-full h-full shrink-0" />
                 </div>
-                : <div className="bg-lightGray w-[304px] h-[170px] flex items-center justify-center">
+                : <div className="bg-lightGray w-[180px] h-[100px] md:w-[304px] md:h-[170px] flex items-center justify-center">
                     Upload thumbnail...
                 </div>}
 

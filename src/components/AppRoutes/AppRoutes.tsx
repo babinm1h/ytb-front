@@ -17,7 +17,6 @@ export enum AllRoutes {
     register = '/register',
     video = '/video',
     channel = '/channel',
-    search = '/search',
     subscriptions = '/subscriptions',
     studio = '/studio'
 }

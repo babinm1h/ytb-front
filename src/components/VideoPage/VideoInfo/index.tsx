@@ -27,7 +27,7 @@ const VideoInfo: FC<IVideoInfoProps> = ({ video }) => {
             <div className="py-5 border-b border-gray-300">
                 <h1 className="text-xl">{video?.title}</h1>
                 <div className="flex items-center justify-between">
-                    <div className="text-myGray flex items-center gap-2 mt-2">
+                    <div className="text-myGray flex xs:items-center gap-2 mt-2 flex-col xs:flex-row">
                         <span>{roundNumber(video?.views || 0)} views,</span>
                         <span>{getCreationDate(video.createdAt || '')}</span>
                     </div>
@@ -44,14 +44,14 @@ const VideoInfo: FC<IVideoInfoProps> = ({ video }) => {
                             {isDisliked
                                 ? <FillDislikeIcon className='actionIcon' />
                                 : <DislikeIcon className='actionIcon' />}
-                            <span className="uppercase font-medium">dislike</span>
+                            <span className="uppercase font-medium hidden sm:block">dislike</span>
                         </button>
                     </div>
                 </div>
             </div>
 
             <div className="py-5 border-b border-gray-300">
-                <div className="flex justify-between">
+                <div className="flex justify-between sm:flex-row flex-col gap-5">
                     <div className="flex items-center gap-3">
                         <NavLink to={AllRoutes.channel + `/${video.user._id}/home`}
                             className="flex-shrink-0 w-12 h-12">

@@ -10,7 +10,7 @@ interface IChannelListProps {
 
 const ChannelsList: FC<IChannelListProps> = ({ users, isLoading }) => {
     return (
-        <div className="w-full flex flex-nowrap items-start overflow-x-scroll myScroll">
+        <div className="w-full flex flex-nowrap overflow-x-scroll myScroll">
             {isLoading
                 ? Array(6).fill(0).map((i, index) => <UserSkeleton key={index} />)
                 : users.map(u => <ChannelItem key={u._id} user={u} />)}

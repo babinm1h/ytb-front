@@ -31,7 +31,7 @@ const Comment: FC<ICommentProps> = ({ comment }) => {
                     className="w-full h-full rounded-[50%] object-cover" />
             </div>
             <div className="flex-grow">
-                <div className="flex items-center gap-2">
+                <div className="flex sm:items-center sm:gap-2 flex-col sm:flex-row">
                     <NavLink to={AllRoutes.channel + `/${comment.user._id}/home`} className="font-semibold">
                         {comment.user.name}
                     </NavLink>
@@ -39,7 +39,7 @@ const Comment: FC<ICommentProps> = ({ comment }) => {
                         {getCreationTime(comment.createdAt)}
                     </span>
                 </div>
-                <p className="">{comment.text}</p>
+                <p className="sm:mt-1 mt-0">{comment.text}</p>
             </div>
             {user && user._id === comment.user._id && <div className='relative' ref={ref}>
                 <button onClick={onToggleVisible}>

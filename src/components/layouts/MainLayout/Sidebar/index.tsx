@@ -9,7 +9,7 @@ const Sidebar = () => {
 
     return (
         <div className="fixed top-[56px] left-0 h-full z-[1] bg-white">
-            <nav className="flex flex-col items-center md:items-stretch">
+            <nav className="flex flex-col items-stretch">
 
                 <SidebarLink to={AllRoutes.home}>
                     <HomeIcon className='w-7 h-7' />

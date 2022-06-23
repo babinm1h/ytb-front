@@ -21,8 +21,8 @@ const VideoCard: FC<IVideoCardProps> = ({ video }) => {
     return (
         <div className="flex flex-col gap-3 overflow-hidden active:bg-lightGray px-1 cursor-pointer pt-1"
             onClick={onVideoClick}>
-            <div className="w-full h-auto">
-                <img src={SERVER_URL + "/" + video.preview} alt="preview" className="w-full h-full" />
+            <div className="preview">
+                <img src={SERVER_URL + "/" + video.preview} alt="preview" />
             </div>
 
             <div className="flex gap-3 pb-4">
