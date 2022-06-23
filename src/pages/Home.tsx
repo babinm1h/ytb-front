@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import Slider from '../components/Slider';
 import MainLayout from '../components/layouts/MainLayout';
 import VideosList from '../components/VideosList';
@@ -24,9 +24,7 @@ const Home = () => {
         dispatch(fetchPopularUsers())
     }, [dispatch])
 
-    const cb = () => {
-        dispatch(fetchAllVideos(currentPage)).then(() => dispatch(incrCurrentPage()))
-    }
+    const cb = useCallback(() => dispatch(fetchAllVideos(currentPage)).then(() => dispatch(incrCurrentPage())), [])
 
     // const scrollPagination = useScrollPagination(videos.length, currentPage, totalCount)
 
@@ -45,7 +43,7 @@ const Home = () => {
                     <Slider videos={popularVideos} />
                 </section>
 
-                <section className="p-5" ref={parentRef}>
+                <section className="p-5 overflow-auto" ref={parentRef}>
                     <h2 className="sectionTitle">Recommended</h2>
                     <VideosList videos={videos} />
                     {isLoading && <VideoSkeletonList />}

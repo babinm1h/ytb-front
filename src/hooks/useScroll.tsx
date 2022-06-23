@@ -1,7 +1,6 @@
 import { MutableRefObject, useEffect, useRef } from "react";
 
 export default function useScroll(parentRef: MutableRefObject<any>, childRef: MutableRefObject<any>, callback: any) {
-    const observer = useRef<any>();
 
     useEffect(() => {
         const options = {
@@ -9,17 +8,17 @@ export default function useScroll(parentRef: MutableRefObject<any>, childRef: Mu
             rootMargin: '0px',
             threshold: 0
         }
-        observer.current = new IntersectionObserver(([target]) => {
+        const observer = new IntersectionObserver(([target]) => {
             if (target.isIntersecting) {
                 console.log('intersected')
                 callback()
             }
         }, options)
 
-        observer.current.observe(childRef.current)
+        observer.observe(childRef.current)
 
-        return function () {
-            observer.current.unobserve(childRef.current)
-        };
-    }, [])
+        return () => {
+            observer.unobserve(childRef.current)
+        }
+    }, [callback])
 };
