@@ -21,5 +21,5 @@ export default function useScroll(parentRef: MutableRefObject<any>, childRef: Mu
         return function () {
             observer.current.unobserve(childRef.current)
         };
-    }, [callback])
+    }, [])
 };
