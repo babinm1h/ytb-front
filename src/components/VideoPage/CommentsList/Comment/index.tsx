@@ -10,6 +10,7 @@ import { IComment } from '../../../../types/models/comment.types';
 import { getCreationTime } from '../../../../utils/time.helpers';
 import { AllRoutes } from '../../../AppRoutes/AppRoutes';
 import Popup from '../../../Popup';
+import defUser from "../../../../assets/defUser.png"
 
 interface ICommentProps {
     comment: IComment
@@ -27,7 +28,7 @@ const Comment: FC<ICommentProps> = ({ comment }) => {
     return (
         <li className="flex gap-3">
             <div className="w-10 h-10 flex-shrink-0">
-                <img src={SERVER_URL + "/" + comment.user.avatar} alt={comment.user.name}
+                <img src={comment.user.avatar ? SERVER_URL + "/" + comment.user.avatar : defUser} alt={comment.user.name}
                     className="w-full h-full rounded-[50%] object-cover" />
             </div>
             <div className="flex-grow">

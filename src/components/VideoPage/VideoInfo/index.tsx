@@ -9,6 +9,7 @@ import { IVideo } from '../../../types/models/video.types';
 import { roundNumber } from '../../../utils/roundNumber';
 import { getCreationDate } from '../../../utils/time.helpers';
 import { AllRoutes } from '../../AppRoutes/AppRoutes';
+import defUser from "../../../assets/defUser.png"
 
 interface IVideoInfoProps {
     video: IVideo
@@ -55,7 +56,7 @@ const VideoInfo: FC<IVideoInfoProps> = ({ video }) => {
                     <div className="flex items-center gap-3">
                         <NavLink to={AllRoutes.channel + `/${video.user._id}/home`}
                             className="flex-shrink-0 w-12 h-12">
-                            <img src={SERVER_URL + "/" + video?.user.avatar} alt="author"
+                            <img src={video.user.avatar ? SERVER_URL + "/" + video.user.avatar : defUser} alt="author"
                                 className="w-full h-full rounded-[50%] object-cover" />
                         </NavLink>
                         <div className="">

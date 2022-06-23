@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { SERVER_URL } from '../../../../../API';
 import { IUser } from '../../../../../types/models/user.types';
+import defUser from "../../../../../assets/defUser.png"
 
 interface IUploadAvatarProps {
     user: IUser
@@ -17,7 +18,7 @@ const UploadAvatar: FC<IUploadAvatarProps> = ({ user, handleImg, preview }) => {
             </p>
             <div className="flex items-center gap-10 mt-5">
                 <div className="sm:w-[200px] sm:h-[110px] w-[140px] h-[70px] shrink-0 flex items-center justify-center">
-                    <img src={preview ? preview : SERVER_URL + "/" + user.avatar} alt="avatar"
+                    <img src={preview ? preview : user.avatar ? SERVER_URL + "/" + user.avatar : defUser} alt="avatar"
                         className='w-20 h-20 rounded-[50%] object-cover' />
                 </div>
                 <label htmlFor="avatar" className="subBtn text-white bg-primaryBlue cursor-pointer">

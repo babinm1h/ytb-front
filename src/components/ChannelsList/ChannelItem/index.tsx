@@ -4,6 +4,7 @@ import { SERVER_URL } from '../../../API';
 import { IUser } from '../../../types/models/user.types';
 import { roundNumber } from '../../../utils/roundNumber';
 import { AllRoutes } from '../../AppRoutes/AppRoutes';
+import defUser from '../../../assets/defUser.png'
 
 interface IChannelItemProps {
     user: IUser
@@ -15,7 +16,7 @@ const ChannelItem: FC<IChannelItemProps> = ({ user }) => {
         <NavLink to={AllRoutes.channel + `/${user._id}/home`} className='channelItem'>
             <div className='flex flex-col items-center justify-center cursor-pointer flex-shrink-0'>
                 <div className="flex-shrink-0 md:w-12 md:h-12 mb-2 w-14 h-14">
-                    <img src={SERVER_URL + '/' + user.avatar} alt={user.name}
+                    <img src={user.avatar ? SERVER_URL + "/" + user.avatar : defUser} alt={user.name}
                         className="w-full h-full rounded-[50%] object-cover" />
                 </div>
                 <span className="hidden sm:inline-block font-semibold text-center sm:line-clamp-1">

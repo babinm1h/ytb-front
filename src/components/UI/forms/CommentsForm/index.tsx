@@ -6,6 +6,7 @@ import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { commentVideo } from '../../../../redux/thunks/videoPage.thunks';
 import { IUser } from '../../../../types/models/user.types';
 import { validate } from '../../../../utils/validate';
+import defUser from '../../../../assets/defUser.png'
 
 interface ICommentsFormProps {
     user: IUser
@@ -31,7 +32,7 @@ const CommentsForm: FC<ICommentsFormProps> = ({ user, videoId }) => {
             <form action="" className="flex flex-col gap-5 my-7 flex-grow" onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex items-center gap-5">
                     <div className="flex-shrink-0 w-10 h-10">
-                        <img src={SERVER_URL + "/" + user.avatar} alt="avatar"
+                        <img src={user.avatar ? SERVER_URL + "/" + user.avatar : defUser} alt="avatar"
                             className="rounded-[50%] w-full h-full object-cover" />
                     </div>
                     <input type="text" className="w-full border-b-2 border-gray-400 py-1 focus:border-black"

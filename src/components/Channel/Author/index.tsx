@@ -4,6 +4,7 @@ import { useSubscribe } from '../../../hooks/useSubscribe';
 import { IUser } from '../../../types/models/user.types';
 import { roundNumber } from '../../../utils/roundNumber';
 import ChannelButtons from './Buttons/index ';
+import defUser from "../../../assets/defUser.png"
 
 interface IAuthorProps {
     user: IUser
@@ -22,7 +23,7 @@ const Author: FC<IAuthorProps> = ({ user }) => {
 
             <div className="flex mt-5 gap-5 flex-col justify-center items-center sm:flex-row">
                 <div className="w-20 h-20 rounded-[50%] flex-shrink-0">
-                    <img src={SERVER_URL + "/" + user.avatar} alt={user?.name}
+                    <img src={user.avatar ? SERVER_URL + "/" + user.avatar : defUser} alt={user?.name}
                         className="object-cover w-full h-full rounded-[50%]" />
                 </div>
                 <div className="flex-grow text-center sm:text-start">

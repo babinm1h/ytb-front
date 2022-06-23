@@ -7,7 +7,7 @@ export interface IUser {
     subscribersCount: number
     subscriptions: string[]
     country?: string
-    avatar: string
+    avatar?: string
     banner?: string
     _id: string
     likes: string[]

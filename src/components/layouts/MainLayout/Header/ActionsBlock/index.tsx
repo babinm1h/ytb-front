@@ -10,6 +10,7 @@ import { removeTokenCookie } from '../../../../../utils/auth.helpers';
 import { AllRoutes } from '../../../../AppRoutes/AppRoutes';
 import Popup from '../../../../Popup';
 import UploadModal from './UploadModal';
+import defUser from '../../../../../assets/defUser.png'
 
 
 const ActionsBlock = () => {
@@ -36,7 +37,7 @@ const ActionsBlock = () => {
                 ? <div className="flex gap-5 items-center">
                     <UploadModal />
                     <div className="w-10 h-10 flex-shrink-0 relative" ref={ref}>
-                        <img src={SERVER_URL + "/" + user.avatar} alt={user.name} onClick={onToggleVisible}
+                        <img src={user.avatar ? SERVER_URL + "/" + user.avatar : defUser} alt={user.name} onClick={onToggleVisible}
                             className="rounded-[50%] object-cover w-full h-full cursor-pointer" />
                         {isVisible && <Popup>
                             <NavLink to={AllRoutes.channel + `/${user._id}/home`} className="popupLi">
