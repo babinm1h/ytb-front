@@ -9,15 +9,14 @@ export const useScrollPagination = (videosLength: number, currentPage: number, t
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        if (doRefetch) {
-            dispatch(fetchAllVideos(currentPage))
-                .then(() => dispatch(incrCurrentPage())).finally(() => setDoRefetch(false))
-        }
+        if (!doRefetch) return;
+        dispatch(fetchAllVideos(currentPage))
+            .then(() => dispatch(incrCurrentPage())).finally(() => setDoRefetch(false))
     }, [doRefetch])
 
 
     const handleScroll = (e: any) => {
-        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 40 && videosLength + 1 < totalCount) {
+        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 50 && videosLength < totalCount) {
             setDoRefetch(true)
         }
     }
