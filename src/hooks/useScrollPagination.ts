@@ -13,6 +13,8 @@ export const useScrollPagination = (videosLength: number, currentPage: number, t
             dispatch(fetchAllVideos(currentPage))
                 .then(() => dispatch(incrCurrentPage())).finally(() => setDoRefetch(false))
         }
+
+        return () => setDoRefetch(true)
     }, [doRefetch])
 
 

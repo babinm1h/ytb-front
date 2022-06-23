@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Slider from '../components/Slider';
 import MainLayout from '../components/layouts/MainLayout';
 import VideosList from '../components/VideosList';
-import { fetchPopularUsers, fetchPopularVideos } from '../redux/thunks/videos.thunks';
+import { fetchAllVideos, fetchPopularUsers, fetchPopularVideos } from '../redux/thunks/videos.thunks';
 import { useAppSelector } from '../hooks/useAppSelector';
 import { useAppDispatch } from '../hooks/useAppDispatch';
 import ChannelsList from '../components/ChannelsList';
@@ -12,12 +12,14 @@ import VideoSkeletonList from '../components/Loaders/VideoSkeletonList';
 const Home = () => {
     const dispatch = useAppDispatch()
     const { isLoading, videos, popularVideos, popularUsers, isUsersLoading, currentPage, totalCount } = useAppSelector(state => state.videos)
+    const { updateVideoSuccess } = useAppSelector(state => state.studio)
 
 
     useEffect(() => {
         dispatch(fetchPopularVideos())
         dispatch(fetchPopularUsers())
     }, [dispatch])
+
 
     const scrollPagination = useScrollPagination(videos.length, currentPage, totalCount)
 
