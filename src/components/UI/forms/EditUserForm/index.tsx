@@ -13,6 +13,7 @@ import { validate } from '../../../../utils/validate';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Spinner from '../../../Loaders/Spinner';
+import { setUpdateUserSuccess } from '../../../../redux/slices/auth.slice';
 
 
 interface IForm {
@@ -56,6 +57,7 @@ const EditUserForm = () => {
                 draggable: true,
                 progress: undefined,
             });
+            dispatch(setUpdateUserSuccess(false))
         } else return;
     }, [updateSuccess])
 
