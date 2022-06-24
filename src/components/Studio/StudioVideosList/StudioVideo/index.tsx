@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import { SERVER_URL } from '../../../../API';
 import { EyeIcon, PenIcon, TrashIcon } from '../../../../assets/icons';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useModal } from '../../../../hooks/useModal';
@@ -30,7 +29,7 @@ const StudioVideo: FC<IStudioVideoProps> = ({ video }) => {
                 <div className="flex items-center gap-4 max-w-[350px] w-full min-w-[120px]">
                     <div className="w-[120px] h-[68px] flex-shrink-0">
                         <NavLink to={AllRoutes.studio + `/${video._id}`} >
-                            <img className="w-full h-full" alt="preview" src={SERVER_URL + "/" + video.preview} />
+                            <img className="w-full h-full" alt="preview" src={video.preview} />
                         </NavLink>
                     </div>
                     <div className="">

@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { SERVER_URL } from '../../API';
 import { IVideo } from '../../types/models/video.types';
 import { roundNumber } from '../../utils/roundNumber';
 import { getCreationTime } from '../../utils/time.helpers';
@@ -23,14 +22,14 @@ const VideoCard: FC<IVideoCardProps> = ({ video }) => {
         <div className="flex flex-col gap-3 overflow-hidden active:bg-lightGray px-1 cursor-pointer pt-1"
             onClick={onVideoClick}>
             <div className="preview">
-                <img src={SERVER_URL + "/" + video.preview} alt="preview" />
+                <img src={video.preview} alt="preview" />
             </div>
 
             <div className="flex gap-3 pb-4">
                 <div className="w-10 h-10 border rounded-[50%] flex-shrink-0"
                     onClick={(e) => e.stopPropagation()}>
                     <NavLink to={AllRoutes.channel + `/${video.user._id}/home`}>
-                        <img src={video.user.avatar ? SERVER_URL + "/" + video.user.avatar : defUser} alt="author"
+                        <img src={video.user.avatar ? video.user.avatar : defUser} alt="author"
                             className="rounded-[50%] w-full h-full object-cover" />
                     </NavLink>
                 </div>

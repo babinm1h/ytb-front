@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SERVER_URL } from '../../../API';
 import { IVideo } from '../../../types/models/video.types';
 import { roundNumber } from '../../../utils/roundNumber';
 import { getCreationTime } from '../../../utils/time.helpers';
@@ -20,7 +19,7 @@ const ChannelVideoCard: FC<IChannelVideoCardProps> = ({ video }) => {
     return (
         <div className="flex flex-col gap-3 overflow-hidden active:bg-lightGray px-1 cursor-pointer pt-1"
             onClick={onVideoClick}>
-            <img src={SERVER_URL + "/" + video.preview} alt="preview" className="w-full h-full" />
+            <img src={video.preview} alt="preview" className="w-full h-full" />
 
             <div className="">
                 <div className="">

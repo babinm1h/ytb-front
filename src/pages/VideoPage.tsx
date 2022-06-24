@@ -8,7 +8,6 @@ import { useAppSelector } from '../hooks/useAppSelector';
 import { resetVideo } from '../redux/slices/videoPage.slice';
 import { fetchSingleVideo, fetchVideoComments } from '../redux/thunks/videoPage.thunks';
 import ReactPlayer from "react-player"
-import { SERVER_URL } from '../API';
 import CommentsList from '../components/VideoPage/CommentsList';
 import Spinner from '../components/Loaders/Spinner';
 
@@ -35,7 +34,7 @@ const VideoPage = () => {
                     ? <div className="text-center"><Spinner /></div>
                     : <>
                         <div className="w-full h-auto border border-gray-400 bg-black">
-                            <ReactPlayer url={SERVER_URL + "/" + video.video} controls={true}
+                            <ReactPlayer url={video.video} controls={true}
                                 width="100%" height="100%" volume={0.1} />
                         </div>
                         <VideoInfo video={video} />

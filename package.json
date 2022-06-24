@@ -15,6 +15,7 @@
     "@types/react-redux": "^7.1.24",
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
+    "framer-motion": "^6.3.15",
     "js-cookie": "^3.0.1",
     "millify": "^4.0.0",
     "moment": "^2.29.3",

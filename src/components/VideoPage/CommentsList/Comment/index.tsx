@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import { SERVER_URL } from '../../../../API';
 import { DotsIcon, TrashIcon } from '../../../../assets/icons';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
@@ -28,7 +27,7 @@ const Comment: FC<ICommentProps> = ({ comment }) => {
     return (
         <li className="flex gap-3">
             <div className="w-10 h-10 flex-shrink-0">
-                <img src={comment.user.avatar ? SERVER_URL + "/" + comment.user.avatar : defUser} alt={comment.user.name}
+                <img src={comment.user.avatar ?comment.user.avatar : defUser} alt={comment.user.name}
                     className="w-full h-full rounded-[50%] object-cover" />
             </div>
             <div className="flex-grow">

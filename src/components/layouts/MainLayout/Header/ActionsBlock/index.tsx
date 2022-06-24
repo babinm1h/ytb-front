@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { SERVER_URL } from '../../../../../API';
 import { CircleUser, LogoutIcon, SettingsIcon, UserIcon } from '../../../../../assets/icons';
 import { useAppDispatch } from '../../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../../hooks/useAppSelector';
@@ -37,7 +36,7 @@ const ActionsBlock = () => {
                 ? <div className="flex gap-5 items-center">
                     <UploadModal />
                     <div className="w-10 h-10 flex-shrink-0 relative" ref={ref}>
-                        <img src={user.avatar ? SERVER_URL + "/" + user.avatar : defUser} alt={user.name} onClick={onToggleVisible}
+                        <img src={user.avatar ?  user.avatar : defUser} alt={user.name} onClick={onToggleVisible}
                             className="rounded-[50%] object-cover w-full h-full cursor-pointer" />
                         {isVisible && <Popup>
                             <NavLink to={AllRoutes.channel + `/${user._id}/home`} className="popupLi">

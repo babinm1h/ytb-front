@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import { SERVER_URL } from '../../../API';
 import { LikeIcon, DislikeIcon, FillLikeIcon, FillDislikeIcon } from '../../../assets/icons';
 import { useAppSelector } from '../../../hooks/useAppSelector';
 import { useSubscribe } from '../../../hooks/useSubscribe';
@@ -56,7 +55,7 @@ const VideoInfo: FC<IVideoInfoProps> = ({ video }) => {
                     <div className="flex items-center gap-3">
                         <NavLink to={AllRoutes.channel + `/${video.user._id}/home`}
                             className="flex-shrink-0 w-12 h-12">
-                            <img src={video.user.avatar ? SERVER_URL + "/" + video.user.avatar : defUser} alt="author"
+                            <img src={video.user.avatar ?  video.user.avatar : defUser} alt="author"
                                 className="w-full h-full rounded-[50%] object-cover" />
                         </NavLink>
                         <div className="">

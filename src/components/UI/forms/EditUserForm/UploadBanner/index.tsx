@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { SERVER_URL } from '../../../../../API';
 import { IUser } from '../../../../../types/models/user.types';
 
 interface IUploadBannerProps {
@@ -17,7 +16,7 @@ const UploadBanner: FC<IUploadBannerProps> = ({ user, handleImg, preview }) => {
             </p>
             <div className="flex items-center gap-10 mt-5">
                 <div className="sm:w-[200px] sm:h-[110px] w-[140px] h-[70px] shrink-0 bg-lightGray">
-                    <img src={preview ? preview : user.banner ? SERVER_URL + "/" + user.banner : ""}
+                    <img src={preview ? preview : user.banner ? user.banner : ""}
                         alt="banner"
                         className='w-full h-full' />
                 </div>

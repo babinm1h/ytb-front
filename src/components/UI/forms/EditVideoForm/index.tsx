@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { SERVER_URL } from '../../../../API';
 import { useAppDispatch } from '../../../../hooks/useAppDispatch';
 import { useAppSelector } from '../../../../hooks/useAppSelector';
 import { useUploadImage } from '../../../../hooks/useUploadFile';
@@ -85,7 +84,7 @@ const EditVideoForm = () => {
 
 
                     <PreviewBlock filename={choosenVideo?.title}
-                        preview={preview ? preview : `${SERVER_URL + "/" + choosenVideo.preview}`} />
+                        preview={preview ? preview : `${choosenVideo.preview}`} />
 
                 </div>
 

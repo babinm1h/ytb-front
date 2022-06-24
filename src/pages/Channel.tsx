@@ -53,7 +53,7 @@ const Channel = () => {
                     ? popularVideos.length > 0
                         ? <ChannelHome popularVideos={popularVideos} />
                         : <h3 className='text-gray-500 text-xl text-center py-5'>
-                            This channel doesn't have any content
+                            This channel doesn't have popular content
                         </h3>
                     : activeTab === ChannelTabs.videos
                         ? <ChannelVideos />

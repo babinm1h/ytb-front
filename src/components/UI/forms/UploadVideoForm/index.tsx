@@ -79,7 +79,7 @@ const UploadVideoForm: FC<IUploadVideoFormProps> = ({ isOpen, onClose }) => {
                 ? <form action="" className="w-full flex flex-col h-full" onSubmit={handleSubmit(onSubmit)}>
                     <div className="border-b border-gray-300 p-5 flex items-center">
                         <span className='sectionTitle m-0 flex-grow'>{videoFile.name}</span>
-                        <button onClick={onClose} className='actionIcon'>
+                        <button onClick={onClose} className='actionIcon' disabled={createPending}>
                             <CloseIcon className='w-6 h-6 text-myGray' />
                         </button>
                     </div>
