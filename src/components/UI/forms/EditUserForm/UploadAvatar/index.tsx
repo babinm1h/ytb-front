@@ -15,7 +15,7 @@ const UploadAvatar: FC<IUploadAvatarProps> = ({ user, handleImg, preview }) => {
             <p className="text-myGray text-[12px]">
                 Your profile picture will appear where your channel is presented on YouTube, such as next to your videos and comments
             </p>
-            <div className="flex items-center gap-10 mt-5">
+            <div className="flex items-center gap-10 mt-5 flex-col xs:flex-row">
                 <div className="sm:w-[200px] sm:h-[110px] w-[140px] h-[70px] shrink-0 flex items-center justify-center">
                     <img src={preview ? preview : user.avatar ?  user.avatar : defUser} alt="avatar"
                         className='w-20 h-20 rounded-[50%] object-cover' />

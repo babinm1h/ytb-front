@@ -26,7 +26,7 @@ const StudioVideo: FC<IStudioVideoProps> = ({ video }) => {
         <>
             <li className="border-t border-gray-300 px-5 py-3 md:flex items-center gap-5 block">
 
-                <div className="flex items-center gap-4 max-w-[350px] w-full min-w-[120px]">
+                <div className="flex sm:items-center sm:gap-4 max-w-[350px] w-full min-w-[120px] flex-col items-start sm:flex-row gap-2">
                     <div className="w-[120px] h-[68px] flex-shrink-0">
                         <NavLink to={AllRoutes.studio + `/${video._id}`} >
                             <img className="w-full h-full" alt="preview" src={video.preview} />

@@ -35,7 +35,7 @@ body {
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 input,
 button,
@@ -74,8 +74,8 @@ h6 {
     font-size: inherit;
     font-weight: inherit;
 }
-body{
-    @apply scrollbar-thin scrollbar-thumb-myGray overflow-y-scroll overflow-x-hidden bg-white;
+body {
+    @apply scrollbar-thin scrollbar-thumb-myGray overflow-y-scroll overflow-hidden bg-white;
 }
 /*--------------------*/
 
@@ -83,7 +83,7 @@ body{
 @tailwind components;
 @tailwind utilities;
 
-#root{
+#root {
     font-size: 14px;
     width: 100%;
     min-height: 100vh;
@@ -93,60 +93,59 @@ body{
     padding-bottom: 25px;
 }
 
-
-@layer components{
-    .navItem{
-        @apply text-xs p-2 sm:p-5 flex flex-col items-center gap-1 hover:bg-gray-100 w-full active:bg-lightGray transition-colors cursor-pointer lg:flex-row lg:gap-3  lg:py-2 text-black sm:text-sm
+@layer components {
+    .navItem {
+        @apply text-xs p-2 sm:p-5 flex flex-col items-center gap-1 hover:bg-gray-100 w-full active:bg-lightGray transition-colors cursor-pointer lg:flex-row lg:gap-3  lg:py-2 text-black sm:text-sm;
     }
 
-    .grayInput{
-        @apply border-gray-300 border focus:border-primaryBlue focus:shadow-xs focus:shadow-primaryBlue
+    .grayInput {
+        @apply border-gray-300 border focus:border-primaryBlue focus:shadow-xs focus:shadow-primaryBlue;
     }
 
-    .subBtn{
-        @apply py-[8px] font-medium uppercase px-4 active:scale-95 transition-all
+    .subBtn {
+        @apply py-[8px] font-medium uppercase px-2 xs:px-4 active:scale-95 transition-all text-[12px] xs:text-[14px];
     }
 
-    .sectionTitle{
-        @apply font-medium text-xl mb-2 
+    .sectionTitle {
+        @apply font-medium text-xl mb-2;
     }
 
-    .actionIcon{
-        @apply w-10 h-10 active:bg-lightGray rounded-[50%] p-2 transition-colors
+    .actionIcon {
+        @apply w-10 h-10 active:bg-lightGray rounded-[50%] p-2 transition-colors;
     }
 
-    .popupLi{
+    .popupLi {
         @apply hover:bg-lightGray px-5 py-2 flex items-center gap-3 cursor-pointer whitespace-nowrap transition-colors;
     }
 
-    .preview{
+    .preview {
         @apply bg-lightGray w-full h-auto;
     }
 
-    .myScroll{
-        @apply scrollbar-thin scrollbar-thumb-myGray
+    .myScroll {
+        @apply scrollbar-thin scrollbar-thumb-myGray;
     }
 
-    .videoStat{
-        @apply lg:max-w-[100px] w-full max-w-[70px] hidden lg:block
+    .videoStat {
+        @apply lg:max-w-[100px] w-full max-w-[70px] hidden lg:block;
     }
 
-    .channelItem{
-        @apply py-2 px-3 hover:bg-lightGray self-start flex items-center justify-center; 
+    .channelItem {
+        @apply py-2 px-3 hover:bg-lightGray self-start flex items-center justify-center;
     }
 
-    .channelTab{
-        @apply px-7 py-4 uppercase relative hover:bg-gray-200 transition-colors;
-        &::before{
-            content:none;
-            position:absolute;
-            background-color:black;
-            width:100%;
-            height:3px;
-            left:0;
-            right:0;
-            bottom:0;
-            display:block;
+    .channelTab {
+        @apply sm:px-7 sm:py-4 uppercase relative hover:bg-gray-200 transition-colors py-2 px-4 text-[12px];
+        &::before {
+            content: none;
+            position: absolute;
+            background-color: black;
+            width: 100%;
+            height: 3px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: block;
             @keyframes tab {
                 0% {
                     transform: scaleX(0);
@@ -157,7 +156,11 @@ body{
                     opacity: 1;
                 }
             }
-                animation: tab 0.3s ease;   
+            animation: tab 0.3s ease;
+
+            @media (max-width: 350px) {
+                display: none;
+            }
         }
     }
 }

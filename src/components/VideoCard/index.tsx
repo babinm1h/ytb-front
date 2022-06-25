@@ -11,7 +11,6 @@ interface IVideoCardProps {
 }
 
 const VideoCard: FC<IVideoCardProps> = ({ video }) => {
-
     const nav = useNavigate()
 
     const onVideoClick = () => {
@@ -37,7 +36,7 @@ const VideoCard: FC<IVideoCardProps> = ({ video }) => {
                     <h4 className="line-clamp-2 truncate font-medium whitespace-normal">
                         {video.title}
                     </h4>
-                    <div className="text-myGray text-[13px] mt-1 leading-6 flex flex-col">
+                    <div className="text-myGray xs:text-[13px] mt-1 leading-6 flex flex-col text-[10px]">
                         <span className="">{video.user.name}</span>
                         <div className="flex items-center gap-2">
                             <span className="">{roundNumber(video.views)} views,</span>

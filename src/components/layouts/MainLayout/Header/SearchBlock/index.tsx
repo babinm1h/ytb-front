@@ -29,7 +29,7 @@ const SearchBlock = () => {
     }
 
     return (
-        <div className="flex-grow w-full max-w-[600px] mx-auto" ref={ref}>
+        <div className="flex-grow w-full max-w-[600px] mx-auto hidden xs:block" ref={ref}>
             <form action="" className="flex items-center h-11 relative">
                 <input type="text" placeholder='Search' onChange={handleChangeTerm}
                     className='w-full grayInput h-11 px-2 ' autoComplete='off' onFocus={handleFocus} />

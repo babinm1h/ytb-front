@@ -67,7 +67,7 @@ const EditUserForm = () => {
 
     return (
         <>
-            <form action="" className="flex flex-col gap-10" onSubmit={handleSubmit(onSubmit)}>
+            <form action="" className="flex flex-col gap-10 overflow-hidden" onSubmit={handleSubmit(onSubmit)}>
                 <UploadAvatar preview={preview} handleImg={handleImg} user={user} />
                 <UploadBanner preview={bannerPreview} handleImg={handleBanner} user={user} />
                 <div className="">
