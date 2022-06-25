@@ -39,7 +39,7 @@ const VideoPage = () => {
             </div>
             <VideoInfo video={video} />
             <div className="py-5">
-              <span className="text-[16px] mb-2">{video.commentsCount} Comments</span>
+              <span className="text-[16px] mb-2 block">{video.commentsCount} Comments</span>
               {user && <CommentsForm user={user} videoId={video._id} />}
               {comments.length > 0 && <CommentsList comments={comments} />}
             </div>
