@@ -1,4 +1,4 @@
-# [Видео с демонстрацией](https://www.youtube.com/watch?v=_DQr9xLdmo0)
+# [Youtube deploy](https://animated-taiyaki-a533ea.netlify.app/)
 Основной функционал:
 - Регистрация и авторизация jwt + cookie 
 - Добавление видео 
