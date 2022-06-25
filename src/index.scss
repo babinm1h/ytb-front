@@ -104,7 +104,7 @@ body {
     }
 
     .subBtn {
-        @apply py-[8px] font-medium uppercase px-2 xs:px-4 active:scale-95 transition-all text-[12px] xs:text-[14px];
+        @apply py-[8px] text-[12px] xs:text-[14px] font-medium uppercase px-2 xs:px-4 active:scale-95 transition-all;
     }
 
     .sectionTitle {
@@ -136,7 +136,7 @@ body {
     }
 
     .channelTab {
-        @apply sm:px-7 sm:py-4 uppercase relative hover:bg-gray-200 transition-colors py-2 px-4 text-[12px];
+        @apply text-[12px] sm:px-7 sm:py-4 uppercase relative hover:bg-gray-200 transition-colors py-2 px-4;
         &::before {
             content: none;
             position: absolute;
