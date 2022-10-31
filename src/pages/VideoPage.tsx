@@ -1,33 +1,33 @@
-import React, { useEffect } from "react"
-import { useParams } from "react-router-dom"
-import MainLayout from "../components/layouts/MainLayout"
-import CommentsForm from "../components/UI/forms/CommentsForm"
-import VideoInfo from "../components/VideoPage/VideoInfo"
-import { useAppDispatch } from "../hooks/useAppDispatch"
-import { useAppSelector } from "../hooks/useAppSelector"
-import { resetVideo } from "../redux/slices/videoPage.slice"
-import { fetchSingleVideo, fetchVideoComments } from "../redux/thunks/videoPage.thunks"
-import ReactPlayer from "react-player"
-import CommentsList from "../components/VideoPage/CommentsList"
-import Spinner from "../components/Loaders/Spinner"
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import MainLayout from "../components/layouts/MainLayout";
+import CommentsForm from "../components/UI/forms/CommentsForm";
+import VideoInfo from "../components/VideoPage/VideoInfo";
+import { useAppDispatch } from "../hooks/useAppDispatch";
+import { useAppSelector } from "../hooks/useAppSelector";
+import { resetVideo } from "../redux/slices/videoPage.slice";
+import { fetchSingleVideo, fetchVideoComments } from "../redux/thunks/videoPage.thunks";
+import ReactPlayer from "react-player";
+import CommentsList from "../components/VideoPage/CommentsList";
+import Spinner from "../components/Loaders/Spinner";
 
 const VideoPage = () => {
-  const { id } = useParams() as { id: string }
-  const dispatch = useAppDispatch()
-  const { video, isVideoLoading, comments } = useAppSelector((state) => state.videoPage)
-  const { user } = useAppSelector((state) => state.auth)
+  const { id } = useParams() as { id: string };
+  const dispatch = useAppDispatch();
+  const { video, isVideoLoading, comments } = useAppSelector((state) => state.videoPage);
+  const { user } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchSingleVideo(id))
-    dispatch(fetchVideoComments(id))
+    dispatch(fetchSingleVideo(id));
+    dispatch(fetchVideoComments(id));
     return () => {
-      dispatch(resetVideo())
-    }
-  }, [id])
+      dispatch(resetVideo());
+    };
+  }, [id]);
 
   return (
     <MainLayout>
-      <div className="p-5">
+      <div className="p-5" data-testid="video-wrapper">
         {!video || isVideoLoading ? (
           <div className="text-center">
             <Spinner />
@@ -47,7 +47,7 @@ const VideoPage = () => {
         )}
       </div>
     </MainLayout>
-  )
-}
+  );
+};
 
-export default VideoPage
+export default VideoPage;

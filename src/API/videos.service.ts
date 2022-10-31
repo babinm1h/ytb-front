@@ -9,7 +9,7 @@ export interface IFetchAllVideosResponse {
 
 export class VideosService {
 
-    static async fetchAll(page: number): Promise<IVideo[]> {
+    static async fetchAll(page: number): Promise<IFetchAllVideosResponse> {
         const { data } = await $instance.get("/videos", { params: { page } })
         return data
     }
