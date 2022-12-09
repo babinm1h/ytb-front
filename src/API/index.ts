@@ -1,7 +1,7 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-export const SERVER_URL = "https://y0utubeq.herokuapp.com";
+export const SERVER_URL = "https://brick-red-bream-wear.cyclic.app";
 
 export const $instance = axios.create({
   baseURL: SERVER_URL,
